@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://ctyvsgmd4ayj"]
+
+[ext_resource type="Script" uid="uid://d4jvuwn5mjjrp" path="res://cell.gd" id="1_gwrgs"]
+[ext_resource type="Texture2D" uid="uid://7qv6vbxpga2s" path="res://images/big_drawn_circle.png" id="1_yh0nt"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gwrgs"]
+radius = 95.0
+
+[node name="Cell" type="Area2D"]
+script = ExtResource("1_gwrgs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_gwrgs")
+
+[node name="BigDrawnCircle" type="Sprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_yh0nt")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -201.0
+offset_top = -51.0
+offset_right = 199.0
+offset_bottom = 49.0
+text = "50"
+horizontal_alignment = 1
+vertical_alignment = 1

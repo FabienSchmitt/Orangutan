@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://b2c07qm7jmqod"]
+
+[ext_resource type="PackedScene" uid="uid://ctyvsgmd4ayj" path="res://cell.tscn" id="1_0303c"]
+
+[node name="main_cells" type="Node2D"]
+
+[node name="Cell" parent="." instance=ExtResource("1_0303c")]
+position = Vector2(390, 714)
+replication_speed = 1.0
+
+[node name="Cell2" parent="." instance=ExtResource("1_0303c")]
+position = Vector2(1646, 634)
+size = 70

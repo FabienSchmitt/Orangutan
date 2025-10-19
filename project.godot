@@ -11,9 +11,14 @@ config_version=5
 [application]
 
 config/name="My2DGame1"
-run/main_scene="uid://dj1445otqsqc2"
+run/main_scene="uid://b2c07qm7jmqod"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
 
 [dotnet]
 
