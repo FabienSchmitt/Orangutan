@@ -1,0 +1,68 @@
+[gd_scene load_steps=6 format=3 uid="uid://cy8a1w8jmf607"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_6c2fk"]
+radius = 100.0
+height = 100.0
+
+[sub_resource type="MultiMesh" id="MultiMesh_pjjbu"]
+use_colors = true
+mesh = SubResource("SphereMesh_6c2fk")
+
+[sub_resource type="Gradient" id="Gradient_6c2fk"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_pjjbu"]
+gradient = SubResource("Gradient_6c2fk")
+
+[sub_resource type="GDScript" id="GDScript_4ecfu"]
+script/source = "class_name PhageSwarm extends MultiMeshInstance2D
+
+@onready() var mesh_instance := %TestMesh
+
+var points = [] # store per-point data
+var speed = 100.0
+var count := 0
+var spawn_position : Vector2 
+var target_position : Vector2
+
+
+func _init(_count : int, _spawn_position: Vector2, _target: Vector2) -> void:
+    multimesh = MultiMesh.new()
+    multimesh.transform_format = MultiMesh.TRANSFORM_2D
+    multimesh.instance_count = 0
+    count = _count
+    spawn_position = _spawn_position
+    target_position = _target
+    multimesh.visible_instance_count = -1
+
+func _ready():
+    # Create a small quad mesh
+    self.mesh = mesh_instance
+
+    
+func spawn_swarm():
+    var start_idx = multimesh.instance_count
+    multimesh.instance_count += count
+    for i in range(count):
+        var angle = randf() * TAU
+        var radius = randf() * 50.0
+        var pos = spawn_position + Vector2(cos(angle), sin(angle)) * radius
+        multimesh.set_instance_transform_2d(start_idx + i, Transform2D(0, pos))
+        points.append({ \"pos\": pos, \"target\": target_position })
+    
+
+func _process(delta):
+    for i in range(multimesh.instance_count):
+        var p = points[i]
+        var dir = (p.target - p.pos).normalized()
+        p.pos += dir * speed * delta
+        multimesh.set_instance_transform_2d(i, Transform2D(0, p.pos))
+        # Optionally: fade or remove when near target
+        if p.pos.distance_to(p.target) < 5.0:
+            # could mark for removal
+            pass
+"
+
+[node name="MultiMeshInstance2D" type="MultiMeshInstance2D"]
+multimesh = SubResource("MultiMesh_pjjbu")
+texture = SubResource("GradientTexture2D_pjjbu")
+script = SubResource("GDScript_4ecfu")

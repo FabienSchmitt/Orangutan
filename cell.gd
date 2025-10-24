@@ -5,6 +5,7 @@ extends Area2D
 @export() var max_size := 100
 
 @onready var size_label : Label = $Label
+@onready() var swarm_multimesh : MultiMeshInstance2D = %SwarmMeshInstance
 
 var replication_timer : Timer
 
@@ -32,5 +33,7 @@ func _input_event(viewport, event, shape_idx):
 		on_click()
 
 func on_click():
-	size /= 2
+	var swarm_size = size/2
+	size -= swarm_size
 	size_label.text = str(size)
+	swarm_multimesh.spawn_swarm(self.position, swarm_size)

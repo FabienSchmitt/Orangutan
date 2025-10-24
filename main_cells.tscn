@@ -1,13 +1,30 @@
-[gd_scene load_steps=2 format=3 uid="uid://b2c07qm7jmqod"]
+[gd_scene load_steps=7 format=3 uid="uid://b2c07qm7jmqod"]
 
 [ext_resource type="PackedScene" uid="uid://ctyvsgmd4ayj" path="res://cell.tscn" id="1_0303c"]
+[ext_resource type="Script" uid="uid://cbjyo4jyvhibn" path="res://swarm_manager.gd" id="2_rkxkd"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_6ix1l"]
+
+[sub_resource type="MultiMesh" id="MultiMesh_4rnfb"]
+mesh = SubResource("QuadMesh_6ix1l")
+
+[sub_resource type="Gradient" id="Gradient_k4ghy"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_mwl8v"]
+gradient = SubResource("Gradient_k4ghy")
 
 [node name="main_cells" type="Node2D"]
 
 [node name="Cell" parent="." instance=ExtResource("1_0303c")]
-position = Vector2(390, 714)
+position = Vector2(185, 167)
 replication_speed = 1.0
 
 [node name="Cell2" parent="." instance=ExtResource("1_0303c")]
-position = Vector2(1646, 634)
+position = Vector2(887, 478)
 size = 70
+
+[node name="SwarmMeshInstance" type="MultiMeshInstance2D" parent="."]
+unique_name_in_owner = true
+multimesh = SubResource("MultiMesh_4rnfb")
+texture = SubResource("GradientTexture2D_mwl8v")
+script = ExtResource("2_rkxkd")
