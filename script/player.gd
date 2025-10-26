@@ -1,9 +1,9 @@
 extends CharacterBody2D
 
-@export() var gravity := 15.0
+@export() var gravity := 30.0
 @export() var speed := 500.0
 @export() var acceleration := 200.0
-@export() var jumpSpeed := 500.0
+@export() var jumpSpeed := 800.0
 
 @onready() var animated_sprite := %AnimatedSprite2D;
 
