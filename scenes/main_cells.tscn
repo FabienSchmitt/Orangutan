@@ -17,12 +17,16 @@ mesh = SubResource("QuadMesh_6ix1l")
 
 [node name="main_cells" type="Node2D"]
 
-[node name="Cell" parent="." instance=ExtResource("1_0303c")]
+[node name="Cell" parent="." groups=["cells"] instance=ExtResource("1_0303c")]
 position = Vector2(185, 167)
 replication_speed = 1.0
 
-[node name="Cell2" parent="." instance=ExtResource("1_0303c")]
-position = Vector2(887, 478)
+[node name="Cell3" parent="." groups=["cells"] instance=ExtResource("1_0303c")]
+position = Vector2(558, 280)
+replication_speed = 1.0
+
+[node name="Cell2" parent="." groups=["cells"] instance=ExtResource("1_0303c")]
+position = Vector2(893, 474)
 size = 70
 
 [node name="SwarmMeshInstance" type="MultiMeshInstance2D" parent="."]
