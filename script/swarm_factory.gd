@@ -1,4 +1,7 @@
 extends Node2D
+class_name SwarmFactory
+
+@export var environment_manager : EnvironmentManager
 
 var _particule_scene: PackedScene
 
@@ -18,5 +21,7 @@ func create_swarm(source: Cell, target: Cell, swarm_size: int) -> Swarm:
 		particule.source = source
 		particules.append(particule)
 		get_tree().current_scene.add_child(particule)
-
-	return Swarm.new(particules, target)
+	
+	var swarm = Swarm.new(particules, target)
+	swarm.environment_manager = environment_manager
+	return swarm

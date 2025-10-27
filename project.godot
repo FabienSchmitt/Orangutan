@@ -18,7 +18,6 @@ config/icon="res://icon.svg"
 [autoload]
 
 GameManager="*res://script/game_manager.gd"
-SwarmFactory="*res://script/swarm_factory.gd"
 
 [dotnet]
 
