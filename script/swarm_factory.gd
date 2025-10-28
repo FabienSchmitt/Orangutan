@@ -19,7 +19,9 @@ func create_swarm(source: Cell, target: Cell, swarm_size: int) -> Swarm:
 		particule.global_position = pos
 		particule.target = target
 		particule.source = source
+		particule.species = source.species
 		particules.append(particule)
+
 		get_tree().current_scene.add_child(particule)
 	
 	var swarm = Swarm.new(particules, target)

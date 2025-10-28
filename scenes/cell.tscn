@@ -9,15 +9,14 @@ radius = 95.0
 
 [node name="Cell" type="Area2D"]
 script = ExtResource("1_gwrgs")
-replication_speed = null
-size = null
-max_size = null
+replication_speed = 0.5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = -0.01860404
 shape = SubResource("CircleShape2D_gwrgs")
 
 [node name="BigDrawnCircle" type="Sprite2D" parent="."]
+unique_name_in_owner = true
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("1_yh0nt")
 

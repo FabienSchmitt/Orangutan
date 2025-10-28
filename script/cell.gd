@@ -2,12 +2,14 @@ extends Area2D
 class_name Cell
 
 @export var replication_speed := 2.0
-@export var size := 50
+@export var size := 5
 @export var max_size := 100
 @export var swarm_factory : SwarmFactory
+@export var species : GameManager.species = GameManager.species.NEUTRAL
 
 @onready var size_label : Label = $Label
 @onready var _selected_circle : Sprite2D  = %SelectedCircle
+@onready var _circle: Sprite2D = %BigDrawnCircle
 @onready var swarm_multimesh : MultiMeshInstance2D = %SwarmMeshInstance
 
 
@@ -21,8 +23,10 @@ func _ready() -> void:
 	add_child(_replication_timer)
 	_replication_timer.timeout.connect(_on_timer_timeout)
 	
-
 	_selected_circle.visible = false
+	_selected_circle.modulate = GameManager.all_species[species].color
+	_circle.modulate = GameManager.all_species[species].color
+	size_label.text = str(size)
 
 
 func _process(delta: float) -> void:
@@ -32,6 +36,7 @@ func _process(delta: float) -> void:
 
 
 func _on_timer_timeout() -> void:
+	if species == GameManager.species.NEUTRAL: pass
 	size += 1
 	size_label.text = str(size)
 
@@ -63,6 +68,11 @@ func attack(target: Cell):
 func select(selected: bool) -> void:
 	_selected_circle.visible = selected
 
-func damage() -> void:
-	size -= 1
+func damage(damage: int, particule_species: GameManager.species) -> void:
+	size -= damage
+	if size < 0:
+		species = particule_species
+		size = size * -1
+		_selected_circle.modulate = GameManager.all_species[species].color
+		_circle.modulate = GameManager.all_species[species].color
 	size_label.text = str(size)

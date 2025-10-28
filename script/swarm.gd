@@ -6,10 +6,12 @@ var _target: Cell
 var _source: Cell
 var _center: Vector2
 var environment_manager : EnvironmentManager
+var species : GameManager.species
 
 func _init(particules: Array[Particule], target: Cell) -> void:
 	_particules = particules
 	_target = target
+
 
 func _physics_process(delta: float) -> void:
 	compute_center()
@@ -17,6 +19,7 @@ func _physics_process(delta: float) -> void:
 	var avoidance_steering = compute_cells_avoidance()
 	#print("center ", _center, "avoidance_steering  : ", avoidance_steering)
 	for particule in _particules:
+		#apply_flocking(particule)
 		particule.move(avoidance_steering, delta)
 	
 	if _particules.all(func(p): return p.reached):
@@ -50,5 +53,5 @@ func find_close_cells() -> Array[Cell]:
 func clean_up():
 	for p in _particules:
 		p.queue_free()
-	self.queue_free()
 	
+	self.queue_free()

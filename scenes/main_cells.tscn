@@ -1,8 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://b2c07qm7jmqod"]
+[gd_scene load_steps=8 format=3 uid="uid://b2c07qm7jmqod"]
 
 [ext_resource type="PackedScene" uid="uid://ctyvsgmd4ayj" path="res://scenes/cell.tscn" id="1_0303c"]
 [ext_resource type="Shader" uid="uid://2gg37bjpcn8r" path="res://scenes/main_cells.gdshader" id="2_gb4nr"]
-[ext_resource type="Script" path="res://script/swarm_manager.gd" id="2_rkxkd"]
 [ext_resource type="Script" uid="uid://djax0kjg0ktw0" path="res://script/environment_manager.gd" id="4_d43la"]
 [ext_resource type="Script" uid="uid://nqouwjgdr8fn" path="res://script/swarm_factory.gd" id="5_j0jj5"]
 
@@ -21,64 +20,46 @@ mesh = SubResource("QuadMesh_6ix1l")
 
 [node name="Cell" parent="." node_paths=PackedStringArray("swarm_factory") groups=["cells"] instance=ExtResource("1_0303c")]
 position = Vector2(185, 167)
-replication_speed = 1.0
 size = 50
-max_size = 100
 swarm_factory = NodePath("../SwarmFactory")
+species = 1
 
 [node name="Cell2" parent="." node_paths=PackedStringArray("swarm_factory") groups=["cells"] instance=ExtResource("1_0303c")]
 position = Vector2(893, 474)
-replication_speed = 2.0
-size = 70
-max_size = 100
+size = 50
 swarm_factory = NodePath("../SwarmFactory")
+species = 2
 
 [node name="Cell5" parent="." node_paths=PackedStringArray("swarm_factory") groups=["cells"] instance=ExtResource("1_0303c")]
 position = Vector2(193, 499)
-replication_speed = 2.0
-size = 70
-max_size = 100
 swarm_factory = NodePath("../SwarmFactory")
 
 [node name="Cell6" parent="." node_paths=PackedStringArray("swarm_factory") groups=["cells"] instance=ExtResource("1_0303c")]
 position = Vector2(969, 145)
-replication_speed = 2.0
-size = 70
-max_size = 100
 swarm_factory = NodePath("../SwarmFactory")
 
 [node name="Cell7" parent="." node_paths=PackedStringArray("swarm_factory") groups=["cells"] instance=ExtResource("1_0303c")]
 position = Vector2(479, 135)
 scale = Vector2(0.67980236, 0.7)
-replication_speed = 2.0
-size = 70
-max_size = 100
 swarm_factory = NodePath("../SwarmFactory")
 
 [node name="Cell3" parent="." node_paths=PackedStringArray("swarm_factory") groups=["cells"] instance=ExtResource("1_0303c")]
 position = Vector2(397, 342)
 scale = Vector2(0.7, 0.7)
-replication_speed = 2.0
-size = 70
-max_size = 100
 swarm_factory = NodePath("../SwarmFactory")
 
 [node name="Cell4" parent="." node_paths=PackedStringArray("swarm_factory") groups=["cells"] instance=ExtResource("1_0303c")]
 position = Vector2(696, 261)
-replication_speed = 2.0
-size = 70
-max_size = 100
 swarm_factory = NodePath("../SwarmFactory")
 
 [node name="SwarmMeshInstance" type="MultiMeshInstance2D" parent="."]
 unique_name_in_owner = true
 material = SubResource("ShaderMaterial_d43la")
 multimesh = SubResource("MultiMesh_4rnfb")
-script = ExtResource("2_rkxkd")
 
 [node name="EnvironmentManager" type="Node2D" parent="."]
 script = ExtResource("4_d43la")
-distance_threshold = 300.0
+distance_threshold = 100.0
 
 [node name="SwarmFactory" type="Node2D" parent="." node_paths=PackedStringArray("environment_manager")]
 script = ExtResource("5_j0jj5")

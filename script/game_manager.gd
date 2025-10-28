@@ -3,6 +3,16 @@ extends Node
 var _cells : Array[Cell]
 var _selected_cells : Array[Cell]
 
+enum species {NEUTRAL, YELLOW, RED, BLUE}
+
+var all_species = {
+	species.RED : Species.new(Color.RED),
+	species.BLUE: Species.new(Color.BLUE),
+	species.YELLOW: Species.new(Color.YELLOW),
+	species.NEUTRAL: Species.new(Color.WHITE)
+}
+
+## Cells
 func add_cell(cell: Cell) -> void: 
 	_cells.append(cell)
 
@@ -24,5 +34,8 @@ func attack_cell(cell : Cell) -> void:
 		selected_cell.select(false)
 
 	_selected_cells = []
+
+
+## Species
 
 
