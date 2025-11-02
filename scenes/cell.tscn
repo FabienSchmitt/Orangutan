@@ -22,6 +22,7 @@ texture = ExtResource("1_yh0nt")
 
 [node name="SelectedCircle" type="Sprite2D" parent="BigDrawnCircle"]
 unique_name_in_owner = true
+visible = false
 rotation = -0.0034612643
 scale = Vector2(3.3, 3.3)
 texture = ExtResource("3_nm02e")

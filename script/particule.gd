@@ -12,10 +12,10 @@ var velocity = Vector2.ZERO
 var max_speed = 100.0
 var max_speed_v = Vector2.ONE * max_speed
 var reached = false
-var species: GameManager.species
+var species: Species
 
 func _ready() -> void:
-	sprite.modulate = GameManager.all_species[species].color
+	sprite.modulate = species.color
 	self.area_entered.connect(_on_area_entered)
 
 

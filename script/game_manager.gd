@@ -2,14 +2,15 @@ extends Node
 
 var _cells : Array[Cell]
 var _selected_cells : Array[Cell]
+var connection : Array[Behaviors]
 
-enum species {NEUTRAL, YELLOW, RED, BLUE}
+enum Behaviors {SYMBIOSE, PREDATION, PARASITE}
 
 var all_species = {
-	species.RED : Species.new(Color.RED),
-	species.BLUE: Species.new(Color.BLUE),
-	species.YELLOW: Species.new(Color.YELLOW),
-	species.NEUTRAL: Species.new(Color.WHITE)
+	"red": Species.new(Color.RED, "red"),
+	"blue": Species.new(Color.BLUE, "blue"),
+	"yellow": Species.new(Color.YELLOW, "yellow"),
+	"white": Species.new(Color.WHITE, "white")
 }
 
 ## Cells
@@ -34,6 +35,10 @@ func attack_cell(cell : Cell) -> void:
 		selected_cell.select(false)
 
 	_selected_cells = []
+
+func get_cells(p_species: Species) -> Array[Cell] :
+	return _cells.filter(func(c): return c.species == p_species)
+
 
 
 ## Species

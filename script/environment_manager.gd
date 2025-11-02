@@ -1,5 +1,5 @@
-extends Node2D
 class_name  EnvironmentManager
+extends Node
 
 @export var distance_threshold := 1000000.0
 @export var avoidance_strength := 1.5

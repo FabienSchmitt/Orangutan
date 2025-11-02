@@ -22,13 +22,13 @@ mesh = SubResource("QuadMesh_6ix1l")
 position = Vector2(185, 167)
 size = 50
 swarm_factory = NodePath("../SwarmFactory")
-species = 1
+species_name = "red"
 
 [node name="Cell2" parent="." node_paths=PackedStringArray("swarm_factory") groups=["cells"] instance=ExtResource("1_0303c")]
 position = Vector2(893, 474)
 size = 50
 swarm_factory = NodePath("../SwarmFactory")
-species = 2
+species_name = "yellow"
 
 [node name="Cell5" parent="." node_paths=PackedStringArray("swarm_factory") groups=["cells"] instance=ExtResource("1_0303c")]
 position = Vector2(193, 499)

@@ -6,7 +6,7 @@ var _target: Cell
 var _source: Cell
 var _center: Vector2
 var environment_manager : EnvironmentManager
-var species : GameManager.species
+var species : Species
 
 func _init(particules: Array[Particule], target: Cell) -> void:
 	_particules = particules

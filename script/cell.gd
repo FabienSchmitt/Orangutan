@@ -5,7 +5,8 @@ class_name Cell
 @export var size := 5
 @export var max_size := 100
 @export var swarm_factory : SwarmFactory
-@export var species : GameManager.species = GameManager.species.NEUTRAL
+@export var species_name := "white"
+
 
 @onready var size_label : Label = $Label
 @onready var _selected_circle : Sprite2D  = %SelectedCircle
@@ -14,9 +15,12 @@ class_name Cell
 
 
 var _replication_timer : Timer
+var species : Species
 
 func _ready() -> void:
 	create_timer()
+
+	species = GameManager.all_species[species_name]
 	update_species(species)
 	size_label.text = str(size)
 
@@ -41,13 +45,14 @@ func create_timer() -> void:
 	add_child(_replication_timer)
 	_replication_timer.timeout.connect(_on_timer_timeout)
 
-func update_species(new_species: GameManager.species) -> void: 
+func update_species(new_species: Species) -> void:
+	# TODO : when we have some other way to get the species.
 	species = new_species
-	_selected_circle.modulate = GameManager.all_species[species].color
-	_circle.modulate = GameManager.all_species[species].color
+	_selected_circle.modulate = species.color
+	_circle.modulate = species.color
 
 func _on_timer_timeout() -> void:
-	if species == GameManager.species.NEUTRAL: return
+	if species.name	== "white": return
 	size += 1
 	size_label.text = str(size)
 
@@ -72,7 +77,7 @@ func attack(target: Cell):
 func select(selected: bool) -> void:
 	_selected_circle.visible = selected
 
-func damage(damage: int, particule_species: GameManager.species) -> void:
+func damage(damage: int, particule_species: Species) -> void:
 	size -= damage
 	if size < 0:
 		update_species(particule_species)
