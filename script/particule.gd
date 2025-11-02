@@ -15,7 +15,7 @@ var reached = false
 var species: GameManager.species
 
 func _ready() -> void:
-	sprite.modulate = Color(randf(), randf(), randf())
+	sprite.modulate = GameManager.all_species[species].color
 	self.area_entered.connect(_on_area_entered)
 
 

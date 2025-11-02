@@ -16,29 +16,15 @@ class_name Cell
 var _replication_timer : Timer
 
 func _ready() -> void:
-	_replication_timer = Timer.new()
-	_replication_timer.wait_time = replication_speed  # seconds	
-	_replication_timer.autostart = true
-	_replication_timer.one_shot = false
-	add_child(_replication_timer)
-	_replication_timer.timeout.connect(_on_timer_timeout)
-	
-	_selected_circle.visible = false
-	_selected_circle.modulate = GameManager.all_species[species].color
-	_circle.modulate = GameManager.all_species[species].color
+	create_timer()
+	update_species(species)
 	size_label.text = str(size)
-
 
 func _process(delta: float) -> void:
 	if (size >= max_size) : return
 	if (_replication_timer.is_stopped()) :
 		_replication_timer.start()
 
-
-func _on_timer_timeout() -> void:
-	if species == GameManager.species.NEUTRAL: pass
-	size += 1
-	size_label.text = str(size)
 
 func _input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT  and event.is_pressed():
@@ -47,6 +33,23 @@ func _input_event(viewport, event, shape_idx):
 	elif event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT and event.is_pressed():
 		GameManager.add_selected_cell(self)
 
+func create_timer() -> void:
+	_replication_timer = Timer.new()
+	_replication_timer.wait_time = replication_speed  # seconds	
+	_replication_timer.autostart = true
+	_replication_timer.one_shot = false
+	add_child(_replication_timer)
+	_replication_timer.timeout.connect(_on_timer_timeout)
+
+func update_species(new_species: GameManager.species) -> void: 
+	species = new_species
+	_selected_circle.modulate = GameManager.all_species[species].color
+	_circle.modulate = GameManager.all_species[species].color
+
+func _on_timer_timeout() -> void:
+	if species == GameManager.species.NEUTRAL: return
+	size += 1
+	size_label.text = str(size)
 
 func on_click():
 	#create_swarm_multi_mesh()
@@ -59,6 +62,7 @@ func attack(target: Cell):
 	get_tree().current_scene.add_child(swarm)
 	size_label.text = str(size)
 
+# FOR MULTIMESH USAGE
 # func create_swarm_multi_mesh():
 # 	var swarm_size = size/2
 # 	size -= swarm_size
@@ -71,8 +75,6 @@ func select(selected: bool) -> void:
 func damage(damage: int, particule_species: GameManager.species) -> void:
 	size -= damage
 	if size < 0:
-		species = particule_species
+		update_species(particule_species)
 		size = size * -1
-		_selected_circle.modulate = GameManager.all_species[species].color
-		_circle.modulate = GameManager.all_species[species].color
 	size_label.text = str(size)
