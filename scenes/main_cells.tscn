@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://b2c07qm7jmqod"]
+[gd_scene load_steps=9 format=3 uid="uid://b2c07qm7jmqod"]
 
 [ext_resource type="PackedScene" uid="uid://ctyvsgmd4ayj" path="res://scenes/cell.tscn" id="1_0303c"]
 [ext_resource type="Shader" uid="uid://2gg37bjpcn8r" path="res://scenes/main_cells.gdshader" id="2_gb4nr"]
 [ext_resource type="Script" uid="uid://djax0kjg0ktw0" path="res://script/environment_manager.gd" id="4_d43la"]
 [ext_resource type="Script" uid="uid://nqouwjgdr8fn" path="res://script/swarm_factory.gd" id="5_j0jj5"]
+[ext_resource type="Script" uid="uid://deomiu24t50i5" path="res://script/flow_field_manager.gd" id="5_m2aax"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_d43la"]
 shader = ExtResource("2_gb4nr")
@@ -57,10 +58,17 @@ unique_name_in_owner = true
 material = SubResource("ShaderMaterial_d43la")
 multimesh = SubResource("MultiMesh_4rnfb")
 
-[node name="EnvironmentManager" type="Node2D" parent="."]
+[node name="EnvironmentManager" type="Node2D" parent="." node_paths=PackedStringArray("flow_field_manager")]
 script = ExtResource("4_d43la")
 distance_threshold = 100.0
+avoidance_strength = null
+flow_field_manager = NodePath("../FlowFieldManager")
 
 [node name="SwarmFactory" type="Node2D" parent="." node_paths=PackedStringArray("environment_manager")]
 script = ExtResource("5_j0jj5")
 environment_manager = NodePath("../EnvironmentManager")
+
+[node name="FlowFieldManager" type="Node2D" parent="."]
+script = ExtResource("5_m2aax")
+field_size = Vector2i(45, 25)
+cell_size = 25.0
