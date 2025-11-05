@@ -12,10 +12,12 @@ class_name Cell
 @onready var _selected_circle : Sprite2D  = %SelectedCircle
 @onready var _circle: Sprite2D = %BigDrawnCircle
 @onready var swarm_multimesh : MultiMeshInstance2D = %SwarmMeshInstance
+@onready var flow_field_manager: FlowFieldManager = %FlowFieldManager
 
 
 var _replication_timer : Timer
 var species : Species
+var flow_field: FlowField
 
 func _ready() -> void:
 	create_timer()
@@ -32,6 +34,9 @@ func _process(delta: float) -> void:
 
 func _input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT  and event.is_pressed():
+		if flow_field == null: 
+			flow_field = flow_field_manager.compute_flow_field(global_position)
+		print("flow field attacked : ", flow_field)
 		GameManager.attack_cell(self)
 
 	elif event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT and event.is_pressed():

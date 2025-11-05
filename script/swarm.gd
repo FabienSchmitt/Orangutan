@@ -8,22 +8,55 @@ var _center: Vector2
 var environment_manager : EnvironmentManager
 var species : Species
 
+var seek_weight: float = 1
+var align_weight: float = 1
+var cohesion_weight: float = 5
+var avoid_weight: float = 10
+var visibility_threshold := 10
+
+var flow_field: FlowField
+
+
 func _init(particules: Array[Particule], target: Cell) -> void:
 	_particules = particules
 	_target = target
+	flow_field = target.flow_field
+	print("target flow field : ", flow_field)
 
 
 func _physics_process(delta: float) -> void:
 	compute_center()
 
-	var avoidance_steering = compute_cells_avoidance()
-	#print("center ", _center, "avoidance_steering  : ", avoidance_steering)
-	for particule in _particules:
-		#apply_flocking(particule)
-		particule.move(avoidance_steering, delta)
+	for p in _particules:
+		var cell_below = flow_field.flow_field_grid.get_cell_from_world(p.global_position)
+		var direction = cell_below.flow.normalized()
+
+		direction += get_boids_noise(p);
+		
+		p.position = p.position + direction * p.speed * delta
 	
 	if _particules.all(func(p): return p.reached):
 		clean_up()
+
+func get_boids_noise(p: Particule) -> Vector2:
+	return avoid(p) * avoid_weight + stick(p) * cohesion_weight + align() * align_weight;
+
+func avoid(current: Particule) -> Vector2:
+	var result = Vector2.ZERO
+	for other in _particules:
+		var distance_to = current.global_position.distance_to(other.global_position)
+		if  distance_to < visibility_threshold:
+			result += (current.global_position - other.global_position).normalized() * (1 - distance_to / visibility_threshold)
+	return result
+
+func stick(p: Particule) -> Vector2:
+	return (_center - p.global_position).normalized()
+
+func align() -> Vector2:
+	return Vector2.ZERO
+
+	
+
 
 
 func compute_center() -> void : 
@@ -32,23 +65,6 @@ func compute_center() -> void :
 		sum += p.global_position
 
 	_center = sum / _particules.size()
-
-func compute_cells_avoidance() -> Vector2 : 
-	var steering = Vector2.ZERO
-	var close_cells = find_close_cells()
-	#print(close_cells)
-	for close_cell in close_cells:
-		var to_obstacle = _center - close_cell.global_position
-		var distance = to_obstacle.length()
-		var avoid_force = to_obstacle.normalized() * (1.0 - distance / environment_manager.distance_threshold) * environment_manager.avoidance_strength
-		steering += avoid_force
-	return steering
-
-func find_close_cells() -> Array[Cell]:
-	var result := environment_manager.get_closed_cells(_center)
-	result.erase(_source)
-	result.erase(_target)
-	return result
 
 func clean_up():
 	for p in _particules:

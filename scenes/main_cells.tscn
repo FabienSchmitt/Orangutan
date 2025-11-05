@@ -58,17 +58,16 @@ unique_name_in_owner = true
 material = SubResource("ShaderMaterial_d43la")
 multimesh = SubResource("MultiMesh_4rnfb")
 
-[node name="EnvironmentManager" type="Node2D" parent="." node_paths=PackedStringArray("flow_field_manager")]
+[node name="EnvironmentManager" type="Node2D" parent="."]
 script = ExtResource("4_d43la")
 distance_threshold = 100.0
-avoidance_strength = null
-flow_field_manager = NodePath("../FlowFieldManager")
 
 [node name="SwarmFactory" type="Node2D" parent="." node_paths=PackedStringArray("environment_manager")]
 script = ExtResource("5_j0jj5")
 environment_manager = NodePath("../EnvironmentManager")
 
 [node name="FlowFieldManager" type="Node2D" parent="."]
+unique_name_in_owner = true
 script = ExtResource("5_m2aax")
 field_size = Vector2i(45, 25)
 cell_size = 25.0

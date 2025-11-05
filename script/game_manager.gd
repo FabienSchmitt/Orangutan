@@ -42,5 +42,3 @@ func get_cells(p_species: Species) -> Array[Cell] :
 
 
 ## Species
-
-
