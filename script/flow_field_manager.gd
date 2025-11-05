@@ -36,7 +36,6 @@ func check_intersect_obstacle(cell: FlowFieldCell) -> bool:
 
 
 func compute_flow_field(destination: Vector2) -> FlowField: 
-	
 	var destination_cell =  flow_field_grid.get_cell_from_world(destination)
 	last_flow_field = FlowField.new(flow_field_grid, destination_cell)
 	print("destination position: ", destination, "destination_cell", destination_cell.grid_position)
@@ -56,8 +55,8 @@ func _draw() -> void:
 	print("last flow field: ", last_flow_field)
 	if last_flow_field == null : return	
 
-	for cell_key: Vector2i in last_flow_field.flow_field_grid.cells:
-		var cell = last_flow_field.flow_field_grid.cells[cell_key]
+	for cell_key: Vector2i in last_flow_field.cells:
+		var cell = last_flow_field.cells[cell_key]
 		draw_circle(cell.center, 0.5, Color.GREEN, false, 0.5, true) 
 		draw_line(cell.center, cell.center + cell.flow * 10, Color.BLUE, 0.5, true)
 

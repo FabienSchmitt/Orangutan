@@ -28,7 +28,7 @@ func _physics_process(delta: float) -> void:
 	compute_center()
 
 	for p in _particules:
-		var cell_below = flow_field.flow_field_grid.get_cell_from_world(p.global_position)
+		var cell_below = flow_field.get_cell_from_world(p.global_position)
 		var direction = cell_below.flow.normalized()
 
 		direction += get_boids_noise(p);
