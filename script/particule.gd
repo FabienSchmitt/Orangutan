@@ -15,7 +15,8 @@ var reached = false
 var species: Species
 
 func _ready() -> void:
-	sprite.modulate = species.color
+	var modulo = (randf() - 0.5) 
+	sprite.modulate = species.color + Color((randf() - 0.5) /2.0, (randf() - 0.5)/ 2.0, (randf() - 0.5)/2.0)
 	self.area_entered.connect(_on_area_entered)
 
 

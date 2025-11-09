@@ -33,6 +33,7 @@ species_name = "yellow"
 
 [node name="Cell5" parent="." node_paths=PackedStringArray("swarm_factory") groups=["cells"] instance=ExtResource("1_0303c")]
 position = Vector2(193, 499)
+size = 100
 swarm_factory = NodePath("../SwarmFactory")
 
 [node name="Cell6" parent="." node_paths=PackedStringArray("swarm_factory") groups=["cells"] instance=ExtResource("1_0303c")]
@@ -47,10 +48,12 @@ swarm_factory = NodePath("../SwarmFactory")
 [node name="Cell3" parent="." node_paths=PackedStringArray("swarm_factory") groups=["cells"] instance=ExtResource("1_0303c")]
 position = Vector2(397, 342)
 scale = Vector2(0.7, 0.7)
+size = 40
 swarm_factory = NodePath("../SwarmFactory")
 
 [node name="Cell4" parent="." node_paths=PackedStringArray("swarm_factory") groups=["cells"] instance=ExtResource("1_0303c")]
-position = Vector2(696, 261)
+position = Vector2(695, 261)
+size = 100
 swarm_factory = NodePath("../SwarmFactory")
 
 [node name="SwarmMeshInstance" type="MultiMeshInstance2D" parent="."]
@@ -69,5 +72,7 @@ environment_manager = NodePath("../EnvironmentManager")
 [node name="FlowFieldManager" type="Node2D" parent="."]
 unique_name_in_owner = true
 script = ExtResource("5_m2aax")
-field_size = Vector2i(45, 25)
-cell_size = 25.0
+field_size = Vector2i(100, 50)
+cell_size = 12.0
+obstacle_weight = 2
+debug = true

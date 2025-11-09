@@ -5,6 +5,7 @@ extends Node2D
 @export var field_size: Vector2i = Vector2i(40, 30)
 @export var cell_size: float = 5
 @export var obstacle_weight: int = 100
+@export var debug := false
 
 var last_flow_field : FlowField #For debug and drawing
 var flow_field_grid: FlowFieldGrid
@@ -44,7 +45,7 @@ func compute_flow_field(destination: Vector2) -> FlowField:
 
 
 func _draw() -> void:
-	if flow_field_grid == null:
+	if flow_field_grid == null || !debug:
 		return
 		
 	for i in range(field_size.x):

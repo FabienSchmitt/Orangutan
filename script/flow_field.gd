@@ -3,12 +3,15 @@ extends FlowFieldGrid
 
 var destination_cell: FlowFieldCell
 
-func _init(p_flow_field_grid: FlowFieldGrid, p_cell: FlowFieldCell) -> void:
-	#copy values from FlowFieldGrid
-	cells = p_flow_field_grid.cells
-	width = p_flow_field_grid.width
-	height = p_flow_field_grid.height
+func _init(grid: FlowFieldGrid, p_cell: FlowFieldCell) -> void:
+	super._init(Vector2i(grid.width, grid.height), grid.cell_size)
+	# we get the cost of each cells 
+	for c_key in cells:
+		var cell = cells[c_key] 
+		cell.cost = grid.cells[cell.grid_position].cost
+
 	destination_cell = cells[p_cell.grid_position]
+
 	print("destination cell : ", destination_cell.center)
 	compute_best_cost()
 	compute_flow()

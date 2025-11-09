@@ -21,7 +21,7 @@ func create_swarm(source: Cell, target: Cell, swarm_size: int) -> Swarm:
 
 func _create_particule(source: Cell, target: Cell) -> Particule :
 	var angle = randf() * TAU
-	var radius = randf() * 50.0
+	var radius = randf() * 20
 	var pos = source.global_position + Vector2(cos(angle), sin(angle)) * radius
 	var particule = _particule_scene.instantiate()
 	particule.global_position = pos
