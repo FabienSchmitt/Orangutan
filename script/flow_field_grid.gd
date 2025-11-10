@@ -9,8 +9,8 @@ var cells := {} # Dictionary with Vector2i keys
 
 const neighbors_offset := [Vector2i(1, 0), Vector2i(-1, 0), Vector2i(0, 1), Vector2i(0, -1)]
 
-const neighbors_offset_diag := [Vector2i(1, 0), Vector2i(-1, 0), Vector2i(0, 1), Vector2i(0, -1),
-							  Vector2i(1, 1), Vector2i(-1, 1), Vector2i(1, -1), Vector2i(-1, -1)]
+const neighbors_offset_diag := [Vector2i(1, 1), Vector2i(-1, 1), Vector2i(1, -1), Vector2i(-1, -1),
+	Vector2i(1, 0), Vector2i(-1, 0), Vector2i(0, 1), Vector2i(0, -1)]
 
 func _init(p_grid_size: Vector2i, p_cell_size: float):
 	width = p_grid_size.x

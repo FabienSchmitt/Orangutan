@@ -33,7 +33,7 @@ func add_obstacles() -> void:
 func check_intersect_obstacle(cell: FlowFieldCell) -> bool:
 	var direct_space_state = get_world_2d().direct_space_state
 	_params.transform = Transform2D(0, cell.world_position + cell.size / 2.0)
-	return direct_space_state.intersect_shape(_params, 1).size() > 0
+	return direct_space_state.intersect_shape(_params, 1).size() > 0.5
 
 
 func compute_flow_field(destination: Vector2) -> FlowField: 
@@ -68,7 +68,7 @@ func _draw() -> void:
 		# add_child(label)	
 		
 		
-		#if cell.cost < 100: continue
-		#draw_circle(cell.world_position + cell.size / 2, cell.size.x / 2, Color.BLUE, false, 0.5, true)
+		# if cell.cost < 10: continue
+		# draw_circle(cell.world_position + cell.size / 2, cell.size.x / 2, Color.PURPLE, false, 0.5, true)
 
 	

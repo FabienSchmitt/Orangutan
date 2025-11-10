@@ -5,15 +5,11 @@
 [ext_resource type="Texture2D" uid="uid://dyj5co0cv8qvs" path="res://images/circle.png" id="3_nm02e"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gwrgs"]
-radius = 95.0
+radius = 84.66
 
 [node name="Cell" type="Area2D"]
 script = ExtResource("1_gwrgs")
 replication_speed = 0.5
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-rotation = -0.01860404
-shape = SubResource("CircleShape2D_gwrgs")
 
 [node name="BigDrawnCircle" type="Sprite2D" parent="."]
 unique_name_in_owner = true
@@ -35,3 +31,7 @@ offset_bottom = 49.0
 text = "50"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = -0.01860404
+shape = SubResource("CircleShape2D_gwrgs")

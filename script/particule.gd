@@ -1,7 +1,8 @@
 extends Area2D
 class_name Particule
 
-@export var speed := 100.0
+@export var speed := 200.0
+@export var default_color := Color.BLUE
 @onready var sprite : Sprite2D = $Sprite2D
 
 #temp
@@ -15,8 +16,8 @@ var reached = false
 var species: Species
 
 func _ready() -> void:
-	var modulo = (randf() - 0.5) 
-	sprite.modulate = species.color + Color((randf() - 0.5) /2.0, (randf() - 0.5)/ 2.0, (randf() - 0.5)/2.0)
+	var base_color = default_color if species == null else species.color
+	sprite.modulate = base_color + Color((randf() - 0.5) /2.0, (randf() - 0.5)/ 2.0, (randf() - 0.5)/2.0)
 	self.area_entered.connect(_on_area_entered)
 
 

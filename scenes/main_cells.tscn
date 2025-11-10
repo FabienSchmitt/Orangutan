@@ -72,7 +72,7 @@ environment_manager = NodePath("../EnvironmentManager")
 [node name="FlowFieldManager" type="Node2D" parent="."]
 unique_name_in_owner = true
 script = ExtResource("5_m2aax")
-field_size = Vector2i(100, 50)
-cell_size = 12.0
+field_size = Vector2i(23, 13)
+cell_size = 50.0
 obstacle_weight = 2
 debug = true
