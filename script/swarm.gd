@@ -9,9 +9,10 @@ var environment_manager : EnvironmentManager
 var species : Species
 
 var seek_weight: float = 10
-var align_weight: float = 1
-var cohesion_weight: float = 1
-var avoid_weight: float = 2
+var boids_weight: float = 2
+var align_weight: float = 0.5
+var cohesion_weight: float = 2
+var avoid_weight: float = 20
 var visibility_threshold := 75
 
 var flow_field: FlowField
@@ -36,7 +37,7 @@ func _physics_process(delta: float) -> void:
 
 		# adding some noise
 		var angle = randf() * TAU
-		direction +=  Vector2(cos(angle), sin(angle)) 
+		#direction +=  Vector2(cos(angle), sin(angle)) 
 
 		# var flow_angle = noise.get_noise_2d(p.position.x * 0.01, p.position.y * 0.01) * TAU
 		# var flow_dir = Vector2(cos(flow_angle), sin(flow_angle))
@@ -45,7 +46,7 @@ func _physics_process(delta: float) -> void:
 		# direction = direction.rotated(random_angle)
 		
 		var boid_force = get_boids_force(p, get_neighbors(p)).normalized() 
-		p.velocity += boid_force * 0.5 + direction * seek_weight
+		p.velocity += boid_force * boids_weight + direction * seek_weight
 		p.velocity = p.velocity.limit_length(p.speed)
 		p.global_position = p.global_position + p.velocity * delta
 	
@@ -77,7 +78,7 @@ func clean_up():
 func get_boids_force(p: Particule, n: Array[Particule]) -> Vector2:
 	if n == []:
 		return Vector2.ZERO
-	return avoid(p, n) * avoid_weight + stick(p, n) * cohesion_weight + align() * align_weight;
+	return avoid(p, n) * avoid_weight + stick(p, n) * cohesion_weight + align(p, n) * align_weight;
 
 func get_neighbors(current: Particule) -> Array[Particule]:
 	return _particules.filter(func(other) : return other != current && \
@@ -97,5 +98,9 @@ func stick(current: Particule, neighbors: Array[Particule]) -> Vector2:
 	var center = neighbors.reduce(func(c, p): return p.position + c, Vector2.ZERO) / neighbors.size()
 	return (center - current.position).normalized()
 
-func align() -> Vector2:
-	return Vector2.ZERO
+func align(current: Particule, neighbors: Array[Particule]) -> Vector2:
+	var avg = Vector2.ZERO
+	for n in neighbors:
+		avg += n.velocity
+	avg /= neighbors.size()
+	return avg - current.velocity
