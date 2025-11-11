@@ -1,7 +1,7 @@
 [gd_scene load_steps=41 format=3 uid="uid://27mftwfbfn3j"]
 
 [ext_resource type="Texture2D" uid="uid://dsxsopadcd6pb" path="res://images/Orangutan.png" id="1_4flbx"]
-[ext_resource type="Script" uid="uid://bnpott6dr23kt" path="res://script/player.gd" id="1_onrkg"]
+[ext_resource type="Script" uid="uid://bnpott6dr23kt" path="res://scripts/player.gd" id="1_onrkg"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4flbx"]
 radius = 43.0

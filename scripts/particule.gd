@@ -3,7 +3,7 @@ class_name Particule
 
 @export var speed := 200.0
 @export var default_color := Color.BLUE
-@onready var sprite : Sprite2D = $Sprite2D
+@onready var sprite : Sprite2D = $Triangle
 
 #temp
 var target : Cell

@@ -5,7 +5,6 @@ var _particules : Array[Particule]
 var _target: Cell
 var _source: Cell
 var _center: Vector2
-var environment_manager : EnvironmentManager
 var species : Species
 
 var seek_weight: float = 10
@@ -49,6 +48,7 @@ func _physics_process(delta: float) -> void:
 		p.velocity += boid_force * boids_weight + direction * seek_weight
 		p.velocity = p.velocity.limit_length(p.speed)
 		p.global_position = p.global_position + p.velocity * delta
+		p.rotation = p.velocity.angle() + 90
 	
 	if _particules.all(func(p): return p.reached):
 		clean_up()

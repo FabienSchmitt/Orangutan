@@ -1,22 +1,18 @@
 extends Node2D
 class_name SwarmFactory
 
-@export var environment_manager : EnvironmentManager
-
 var _particule_scene: PackedScene
 
-func _ready() -> void:
-	_particule_scene = preload("res://scenes/Particule.tscn")
-
 func create_swarm(source: Cell, target: Cell, swarm_size: int) -> Swarm:
+	if _particule_scene == null : 
+		_particule_scene = preload("res://scenes/Particule.tscn")
 	var particules: Array[Particule] = []
 	for i in range(swarm_size):
 		var particule = _create_particule(source, target)
 		particules.append(particule)
-		get_tree().current_scene.add_child(particule)
+		source.get_tree().current_scene.add_child(particule)
 	
 	var swarm = Swarm.new(particules, target)
-	swarm.environment_manager = environment_manager
 	return swarm
 
 func _create_particule(source: Cell, target: Cell) -> Particule :

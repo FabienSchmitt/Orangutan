@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://xp278vjewkh8"]
 
 [ext_resource type="PackedScene" uid="uid://cm63e783x33nb" path="res://scenes/swarm.tscn" id="1_errlg"]
-[ext_resource type="Script" uid="uid://votnfn6ooocw" path="res://script/swarm.gd" id="2_bl13t"]
+[ext_resource type="Script" uid="uid://votnfn6ooocw" path="res://scripts/swarm.gd" id="2_bl13t"]
 
 [node name="Test" type="Node2D"]
 
