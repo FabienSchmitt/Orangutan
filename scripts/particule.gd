@@ -1,24 +1,28 @@
 extends Area2D
 class_name Particule
 
-@export var speed := 200.0
+@export var speed := 300.0
 @export var default_color := Color.BLUE
 @onready var sprite : Sprite2D = $Triangle
 
+var curve: Curve2D
 #temp
 var target : Cell
 var source: Cell
 
 var velocity = Vector2.ZERO
-var max_speed = 100.0
+var max_speed = 200
 var max_speed_v = Vector2.ONE * max_speed
 var reached = false
 var species: Species
+var current_color : Color
 
 func _ready() -> void:
 	var base_color = default_color if species == null else species.color
-	sprite.modulate = base_color + Color((randf() - 0.5) /2.0, (randf() - 0.5)/ 2.0, (randf() - 0.5)/2.0)
+	current_color = base_color + Color((randf() - 0.5) /2.0, (randf() - 0.5)/ 2.0, (randf() - 0.5)/2.0)
+	sprite.modulate = current_color
 	self.area_entered.connect(_on_area_entered)
+	curve = Curve2D.new()
 
 
 # func _physics_process(delta: float) -> void:

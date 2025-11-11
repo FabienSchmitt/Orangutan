@@ -1,3 +1,16 @@
-[gd_scene format=3 uid="uid://e1vaj8hdq4kq"]
+[gd_scene load_steps=2 format=3 uid="uid://e1vaj8hdq4kq"]
+
+[ext_resource type="Script" uid="uid://d02q6whmxc8lk" path="res://scripts/boids.gd" id="1_7meim"]
 
 [node name="swarm_scene" type="Node2D"]
+
+[node name="Boids" type="Node2D" parent="."]
+position = Vector2(599, 328)
+script = ExtResource("1_7meim")
+boids_weight = 10.0
+align_weight = 2.0
+cohesion_weight = 50.0
+visibility_threshold = 150
+starting_speed = 300
+max_speed = 600
+draw_lines = false

@@ -1,58 +1,82 @@
-extends Node
-class_name Swarm
+extends Node2D
+
+@export var boids_weight: float = 2
+@export var align_weight: float = 0.5
+@export var cohesion_weight: float = 2
+@export var avoid_weight: float = 20
+@export var visibility_threshold := 75
+@export var boids_size := 50
+@export var starting_speed := 100
+@export var max_speed := 400
+@export var draw_lines := true
 
 var _particules : Array[Particule]
-var _target: Cell
-var _source: Cell
 var _center: Vector2
 var species : Species
 
-var seek_weight: float = 10
-var boids_weight: float = 2
-var align_weight: float = 0.5
-var cohesion_weight: float = 1
-var avoid_weight: float = 20
-var visibility_threshold := 75
+var _particule_scene: PackedScene
 
-var flow_field: FlowField
 var noise: FastNoiseLite
 
-
-func _init(particules: Array[Particule], target: Cell) -> void:
-	_particules = particules
-	_target = target
-	flow_field = target.flow_field
-	print("target flow field : ", flow_field)
+func _ready() -> void:
+	_particule_scene = preload("res://scenes/Particule.tscn")
+	_create_particules()
 	create_noise()
 
 
 func _physics_process(delta: float) -> void:
 	compute_center()
 	
-	#print("particules : ", flow_field.destination_cell.world_position, flow_field.destination_cell.grid_position)
+	var viewport_size = get_viewport_rect().size
+
 	for p in _particules:
-		var cell_below = flow_field.get_cell_from_world(p.global_position)
-		var direction = cell_below.flow.normalized() 
-
-		# adding some noise
-		var angle = randf() * TAU
-		#direction +=  Vector2(cos(angle), sin(angle)) 
-
-		# var flow_angle = noise.get_noise_2d(p.position.x * 0.01, p.position.y * 0.01) * TAU
-		# var flow_dir = Vector2(cos(flow_angle), sin(flow_angle))
-		# var jitter_strength = 0.5 # radians (about 11 degrees)
-		# var random_angle = randf_range(-jitter_strength, jitter_strength)
-		# direction = direction.rotated(random_angle)
-		
 		var boid_force = get_boids_force(p, get_neighbors(p)).normalized() 
-		p.velocity += boid_force * boids_weight + direction * seek_weight
-		p.velocity = p.velocity.limit_length(p.speed)
+		p.velocity += boid_force * boids_weight
+		p.velocity = p.velocity.limit_length(max_speed)
+		if p.velocity.length() < starting_speed:
+			p.velocity = p.velocity.normalized() * starting_speed
 		p.global_position = p.global_position + p.velocity * delta
-		p.rotation = p.velocity.angle() + deg_to_rad(90)
-	
-	if _particules.all(func(p): return p.reached):
-		clean_up()
 
+# --- Bounce on window edges ---
+		var pos = p.global_position
+
+		if pos.x < 0:
+			pos.x = 0
+			p.velocity.x *= -1
+		elif pos.x > viewport_size.x:
+			pos.x = viewport_size.x
+			p.velocity.x *= -1
+
+		if pos.y < 0:
+			pos.y = 0
+			p.velocity.y *= -1
+		elif pos.y > viewport_size.y:
+			pos.y = viewport_size.y
+			p.velocity.y *= -1
+
+		p.global_position = pos
+		p.curve.add_point(p.position)
+		if (p.curve.point_count > 200): p.curve.remove_point(0)
+
+		p.rotation = p.velocity.angle() + deg_to_rad(90)
+	queue_redraw()
+
+func _draw() -> void:
+	if !draw_lines : return
+	for p in _particules:
+		draw_polyline(p.curve.get_baked_points(), p.current_color, 0.5, true)
+
+func _create_particules() -> void :
+	for i in range(boids_size):
+		var angle = randf() * TAU
+		var radius = randf() * 20
+		var pos = Vector2(cos(angle), sin(angle)) * radius
+		var particule = _particule_scene.instantiate()
+		particule.scale = Vector2(3, 3)
+		particule.position = pos
+		particule.velocity = Vector2(randf(), randf()).normalized() * starting_speed
+		add_child(particule)
+		_particules.append(particule)
 
 func create_noise() -> void:
 	noise = FastNoiseLite.new()
