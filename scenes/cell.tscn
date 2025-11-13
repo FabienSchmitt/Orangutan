@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://ctyvsgmd4ayj"]
 
-[ext_resource type="Script" uid="uid://d4jvuwn5mjjrp" path="res://scripts/cell.gd" id="1_gwrgs"]
+[ext_resource type="Script" uid="uid://d4jvuwn5mjjrp" path="res://scripts/Cell.gd" id="1_gwrgs"]
 [ext_resource type="Texture2D" uid="uid://7qv6vbxpga2s" path="res://images/big_drawn_circle.png" id="1_yh0nt"]
 [ext_resource type="Texture2D" uid="uid://dyj5co0cv8qvs" path="res://images/circle.png" id="3_nm02e"]
 

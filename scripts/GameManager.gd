@@ -7,10 +7,10 @@ var connection : Array[Behaviors]
 enum Behaviors {SYMBIOSE, PREDATION, PARASITE}
 
 var all_species = {
-	"red": Species.new(Color.RED, "red"),
-	"blue": Species.new(Color.BLUE, "blue"),
-	"yellow": Species.new(Color.YELLOW, "yellow"),
-	"white": Species.new(Color.WHITE, "white")
+	# "blue": preload("res://resources/species/blue.tres"),
+	# "red": preload("res://resources/species/red.tres"),
+	# "neutral": preload("res://resources/species/neutral.tres"),
+	# "yellow": preload("res://resources/species/yellow.tres"),
 }
 
 ## Cells
@@ -36,8 +36,8 @@ func attack_cell(cell : Cell) -> void:
 
 	_selected_cells = []
 
-func get_cells(p_species: Species) -> Array[Cell] :
-	return _cells.filter(func(c): return c.species == p_species)
+# func get_cells(p_species: Species) -> Array[Cell] :
+# 	return _cells.filter(func(c): return c.species == p_species)
 
 
 

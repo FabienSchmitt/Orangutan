@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Species" load_steps=2 format=3 uid="uid://dlu3nvm0saysm"]
+
+[ext_resource type="Script" uid="uid://v4d7hxpjgpjy" path="res://scripts/Species.gd" id="1_n8r3p"]
+
+[resource]
+script = ExtResource("1_n8r3p")
+color = Color(0.23739028, 0.31758386, 0.74346614, 1)
+name = "blue"
+cohesion_weight = 1.0
+avoid_weight = 0.0
+fleeing_weight = 10.0
+max_speed = 200
+metadata/_custom_type_script = "uid://v4d7hxpjgpjy"

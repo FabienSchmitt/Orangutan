@@ -1,10 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://xp278vjewkh8"]
+[gd_scene load_steps=2 format=3 uid="uid://xp278vjewkh8"]
 
-[ext_resource type="PackedScene" uid="uid://cm63e783x33nb" path="res://scenes/swarm.tscn" id="1_errlg"]
-[ext_resource type="Script" uid="uid://votnfn6ooocw" path="res://scripts/swarm.gd" id="2_bl13t"]
+[ext_resource type="Script" uid="uid://cvxiy26e2pg1w" path="res://scenes/test.gd" id="1_errlg"]
 
 [node name="Test" type="Node2D"]
-
-[node name="swarm" parent="." instance=ExtResource("1_errlg")]
-position = Vector2(137, 219)
-script = ExtResource("2_bl13t")
+script = ExtResource("1_errlg")

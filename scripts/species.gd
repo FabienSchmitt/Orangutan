@@ -1,12 +1,19 @@
 class_name Species
-extends RefCounted
+extends Resource
 
 @export var color : Color = Color.GRAY
 @export var name : String = "Neutral"
-
-var cells: Array[Cell] = []
-
-func _init(p_color: Color, p_name: String) -> void:
-    color = p_color 
-    name = p_name
-
+@export var predators : Array[String] = []
+@export var preys : Array[String] = []
+@export var has_queen := false
+@export var boids_weight: float = 2
+@export var align_weight: float = 0.5
+@export var cohesion_weight: float = 2
+@export var avoid_weight: float = 20
+@export var fleeing_weight: float = 20
+@export var chasing_weight: float = 0
+@export var visibility_threshold := 75
+@export var boids_size := 50
+@export var starting_speed := 100
+@export var max_speed := 400
+@export var max_chased_speed := 600
