@@ -4,7 +4,7 @@ class_name Cell
 @export var replication_speed := 2.0
 @export var size := 5
 @export var max_size := 100
-@export var species_name := "white"
+@export var species : Species
 
 
 @onready var size_label : Label = $Label
@@ -15,13 +15,10 @@ class_name Cell
 
 
 var _replication_timer : Timer
-var species : Species
 var flow_field: FlowField
 
 func _ready() -> void:
 	create_timer()
-
-	species = GameManager.all_species[species_name]
 	update_species(species)
 	size_label.text = str(size)
 

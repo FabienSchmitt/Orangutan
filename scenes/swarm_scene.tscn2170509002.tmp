@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://e1vaj8hdq4kq"]
+
+[ext_resource type="Script" uid="uid://d02q6whmxc8lk" path="res://scripts/Boids.gd" id="1_7meim"]
+[ext_resource type="Script" path="res://scripts/species.gd" id="2_txlhi"]
+
+[sub_resource type="Resource" id="Resource_cogr6"]
+script = ExtResource("2_txlhi")
+
+[sub_resource type="Resource" id="Resource_e27oo"]
+script = ExtResource("2_txlhi")
+
+[node name="swarm_scene" type="Node2D"]
+
+[node name="Boids" type="Node2D" parent="."]
+position = Vector2(599, 328)
+script = ExtResource("1_7meim")
+draw_lines = false
+species = SubResource("Resource_cogr6")
+
+[node name="Predators" type="Node2D" parent="."]
+position = Vector2(132, 118)
+scale = Vector2(2, 2)
+script = ExtResource("1_7meim")
+draw_lines = false
+species = SubResource("Resource_e27oo")

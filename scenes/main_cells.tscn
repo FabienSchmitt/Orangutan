@@ -1,7 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://b2c07qm7jmqod"]
+[gd_scene load_steps=9 format=3 uid="uid://b2c07qm7jmqod"]
 
 [ext_resource type="PackedScene" uid="uid://ctyvsgmd4ayj" path="res://scenes/cell.tscn" id="1_0303c"]
+[ext_resource type="Resource" uid="uid://cgylf2d8djueg" path="res://resources/species/yellow.tres" id="2_d43la"]
 [ext_resource type="Shader" uid="uid://2gg37bjpcn8r" path="res://scenes/main_cells.gdshader" id="2_gb4nr"]
+[ext_resource type="Resource" uid="uid://b7pbck4g32bcj" path="res://resources/species/red.tres" id="3_j0jj5"]
 [ext_resource type="Script" uid="uid://deomiu24t50i5" path="res://scripts/FlowFieldManager.gd" id="5_m2aax"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_d43la"]
@@ -20,12 +22,12 @@ mesh = SubResource("QuadMesh_6ix1l")
 [node name="Cell" parent="." groups=["cells"] instance=ExtResource("1_0303c")]
 position = Vector2(185, 167)
 size = 50
-species_name = "red"
+species = ExtResource("2_d43la")
 
 [node name="Cell2" parent="." groups=["cells"] instance=ExtResource("1_0303c")]
 position = Vector2(893, 474)
 size = 50
-species_name = "yellow"
+species = ExtResource("3_j0jj5")
 
 [node name="Cell5" parent="." groups=["cells"] instance=ExtResource("1_0303c")]
 position = Vector2(193, 499)
