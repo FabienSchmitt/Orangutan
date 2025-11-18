@@ -7,6 +7,8 @@ extends Node2D
 var _particules : Array[Particule]
 var _particule_scene: PackedScene
 var _noise: FastNoiseLite
+var _active_cells: Dictionary
+var _active_neighbors: Dictionary
 
 func _ready() -> void:
 	_particule_scene = preload("res://scenes/Particule.tscn")
@@ -14,22 +16,26 @@ func _ready() -> void:
 	create_noise()
 
 
-func _physics_process(delta: float) -> void:	
-	for p in _particules:
-		var boid_force = get_boids_force(p, get_neighbors(p)).normalized() 
-		p.velocity += boid_force * species.boids_weight
-		p.velocity = p.velocity.limit_length(species.max_speed)
-		if p.velocity.length() < species.starting_speed:
-			p.velocity = p.velocity.normalized() * species.starting_speed
-		p.global_position = p.global_position + p.velocity * delta
+func _physics_process(delta: float) -> void:
+	compute_neighboring_cells()
 
+	for p in _particules:
+		compute_velocity(p)
+		p.global_position = p.global_position + p.velocity * delta
 		# Go to the other side of the screen
 		p.global_position = move_to_the_other_side(p.global_position)
 		p.curve.add_point(p.position)
 		if (p.curve.point_count > 200): p.curve.remove_point(0)
 
-		p.rotation = p.velocity.angle() + deg_to_rad(90)
+		p.rotation = p.velocity.angle()
 	queue_redraw()
+
+func compute_velocity(p: Particule) -> void:
+	var boid_force = get_boids_force(p, get_neighbors(p)).normalized() 
+	p.velocity += boid_force * species.boids_weight
+	p.velocity = p.velocity.limit_length(species.max_speed)
+	if p.velocity.length() < species.starting_speed:
+		p.velocity = p.velocity.normalized() * species.starting_speed
 
 func _draw() -> void:
 	if !draw_lines : return
@@ -72,7 +78,6 @@ func move_to_the_other_side(pos: Vector2) -> Vector2:
 	return pos
 
 
-
 func clean_up():
 	for p in _particules:
 		p.queue_free()
@@ -84,9 +89,33 @@ func get_boids_force(p: Particule, n: Array[Particule]) -> Vector2:
 		return Vector2.ZERO
 	return avoid(p, n) * species.avoid_weight + stick(p, n) * species.cohesion_weight + align(p, n) * species.align_weight;
 
+func compute_neighboring_cells() -> void:
+	# get all the cells containing boid
+	_active_cells = {}
+	_active_neighbors = {}
+	for p in _particules:
+		var c = GameManager.grid.get_cell_from_world(p.global_position)
+		if _active_cells.has(c): 
+			_active_cells[c].append(p)
+			continue
+		_active_cells[c] = [p]
+		_active_neighbors[c] = GameManager.grid.get_cells_in_distance(c.world_position, species.visibility_threshold)
+
+
 func get_neighbors(current: Particule) -> Array[Particule]:
-	return _particules.filter(func(other) : return other != current && \
+	# first get the grid cells to check
+	var cell = GameManager.grid.get_cell_from_world(current.global_position)
+	# based on eyesight, we check what neighbors cells to check:
+	var cells_to_check = _active_neighbors[cell]
+	var possible_boids : Array[Particule] = []
+	for c in cells_to_check:
+		if !_active_cells.has(c): continue
+		possible_boids.append_array(_active_cells[c])
+	
+	return possible_boids.filter(func(other) : return other != current && \
+
 		other.position.distance_to(current.position) < species.visibility_threshold)
+
 
 
 func avoid(current: Particule, neighbors: Array[Particule]) -> Vector2:

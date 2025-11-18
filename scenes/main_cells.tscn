@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://b2c07qm7jmqod"]
+[gd_scene load_steps=10 format=3 uid="uid://b2c07qm7jmqod"]
 
 [ext_resource type="PackedScene" uid="uid://ctyvsgmd4ayj" path="res://scenes/cell.tscn" id="1_0303c"]
+[ext_resource type="Script" uid="uid://bvl1c72acwqqe" path="res://scripts/main_cells.gd" id="1_m2aax"]
 [ext_resource type="Resource" uid="uid://cgylf2d8djueg" path="res://resources/species/yellow.tres" id="2_d43la"]
 [ext_resource type="Shader" uid="uid://2gg37bjpcn8r" path="res://scenes/main_cells.gdshader" id="2_gb4nr"]
 [ext_resource type="Resource" uid="uid://b7pbck4g32bcj" path="res://resources/species/red.tres" id="3_j0jj5"]
@@ -18,6 +19,7 @@ use_colors = true
 mesh = SubResource("QuadMesh_6ix1l")
 
 [node name="main_cells" type="Node2D"]
+script = ExtResource("1_m2aax")
 
 [node name="Cell" parent="." groups=["cells"] instance=ExtResource("1_0303c")]
 position = Vector2(185, 167)

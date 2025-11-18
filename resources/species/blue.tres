@@ -6,4 +6,9 @@
 script = ExtResource("1_n8r3p")
 color = Color(0.18318003, 0.1957666, 0.60137147, 1)
 boids_weight = 10.0
+align_weight = 2.0
+cohesion_weight = 5.0
+avoid_weight = 10.0
+boids_size = 100
+max_speed = 100
 metadata/_custom_type_script = "uid://bt40o7y7s8cse"

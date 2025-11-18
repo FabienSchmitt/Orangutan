@@ -27,7 +27,7 @@ func compute_best_cost() -> void:
 	while (!cells_to_check.is_empty()):
 		# This may introduce some performance issues
 		current_cell = cells_to_check.pop_front()
-		for n in get_neighbors(current_cell.grid_position, false):
+		for n in get_direct_neighbors(current_cell.grid_position, false):
 			new_cost = current_cell.best_cost + n.cost
 			if (n.best_cost > new_cost):
 				n.best_cost = new_cost
@@ -40,7 +40,7 @@ func compute_flow() -> void:
 		# is by default Vector2.Zero.
 		var best_cost = cell.best_cost 
 
-		for n in get_neighbors(cell.grid_position, true):
+		for n in get_direct_neighbors(cell.grid_position, true):
 			if (best_cost > n.best_cost):
 				best_cost = n.best_cost
 				cell.flow = n.grid_position - cell.grid_position

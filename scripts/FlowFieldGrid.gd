@@ -1,7 +1,6 @@
 class_name FlowFieldGrid
 extends UniformGrid
 
-
 # --- Access methods ---
 func set_cost(pos: Vector2i, cost: float) -> void:
 	if cells.has(pos):

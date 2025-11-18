@@ -3,6 +3,7 @@ extends Node
 var _cells : Array[Cell]
 var _selected_cells : Array[Cell]
 var connection : Array[Behaviors]
+var grid: UniformGrid
 
 enum Behaviors {SYMBIOSE, PREDATION, PARASITE}
 
@@ -42,3 +43,6 @@ func attack_cell(cell : Cell) -> void:
 
 
 ## Species
+func create_grid() -> void:
+	#default value, should come as a parameter I guess...
+	grid = UniformGrid.new(Vector2i(23, 13), 50)

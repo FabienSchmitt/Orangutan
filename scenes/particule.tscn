@@ -14,9 +14,47 @@ material = SubResource("ShaderMaterial_1c1s6")
 script = ExtResource("1_k3nq3")
 
 [node name="Triangle" type="Sprite2D" parent="."]
+rotation = 1.5707964
 scale = Vector2(0.075, 0.1)
 texture = ExtResource("3_l5ohe")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 scale = Vector2(0.075, 0.1)
 polygon = PackedVector2Array(31, 16.400002, 1, -32, -0.20000076, -32, -2, -31.5, -2, -29.5, -32, 20.8, -32, 32, 32, 32, 32, 22.599998, 31, 19)
+
+[node name="Node" type="Node" parent="."]
+
+[node name="RayCast2D" type="RayCast2D" parent="Node"]
+enabled = false
+
+[node name="RayCast2D2" type="RayCast2D" parent="Node"]
+rotation = 0.7853982
+enabled = false
+
+[node name="RayCast2D3" type="RayCast2D" parent="Node"]
+rotation = -0.7853982
+enabled = false
+
+[node name="RayCast2D4" type="RayCast2D" parent="Node"]
+rotation = 1.5707964
+enabled = false
+
+[node name="RayCast2D5" type="RayCast2D" parent="Node"]
+rotation = -1.5707964
+enabled = false
+
+[node name="RayCast2D6" type="RayCast2D" parent="Node"]
+rotation = 2.3561945
+enabled = false
+
+[node name="RayCast2D7" type="RayCast2D" parent="Node"]
+rotation = 3.1415927
+enabled = false
+
+[node name="RayCast2D8" type="RayCast2D" parent="Node"]
+rotation = -2.3561945
+enabled = false
+
+[node name="RayCast2D10" type="RayCast2D" parent="Node"]
+rotation = -1.5707964
+enabled = false
