@@ -2,6 +2,7 @@ extends Node2D
 
 @export var draw_lines := true
 @export var species: Species
+@export var queen: Node2D
 
 #@onready var default_species :Species = preload("res://resources/species/red.tres")
 var _particules : Array[Particule]
@@ -18,9 +19,16 @@ func _physics_process(delta: float) -> void:
 	for p in _particules:
 		var boid_force = get_boids_force(p, get_neighbors(p)).normalized() 
 		p.velocity += boid_force * species.boids_weight
+		if (species.has_queen):
+			var queen_force = get_queen_force(p)
+			p.velocity += queen_force * species.queen_weight
+
 		p.velocity = p.velocity.limit_length(species.max_speed)
 		if p.velocity.length() < species.starting_speed:
 			p.velocity = p.velocity.normalized() * species.starting_speed
+
+
+		p.update_velocity_to_avoid_obstacles()
 		p.global_position = p.global_position + p.velocity * delta
 
 		# Go to the other side of the screen
@@ -78,6 +86,9 @@ func clean_up():
 		p.queue_free()
 	
 	self.queue_free()
+
+func get_queen_force(p: Particule):
+	return (queen.global_position - p.global_position).normalized()
 
 func get_boids_force(p: Particule, n: Array[Particule]) -> Vector2:
 	if n == []:

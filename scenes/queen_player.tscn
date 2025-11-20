@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://bunw05d0anxg3"]
+
+[ext_resource type="Texture2D" uid="uid://bdl8x2wsxmmqj" path="res://images/white_circle.png" id="1_f03vj"]
+[ext_resource type="Script" uid="uid://t62x7g04fg1i" path="res://scripts/queen_player.gd" id="1_kqwfe"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kqwfe"]
+radius = 32.0
+
+[node name="Queen_player" type="CharacterBody2D"]
+script = ExtResource("1_kqwfe")
+
+[node name="WhiteCircle" type="Sprite2D" parent="."]
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("1_f03vj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_kqwfe")
