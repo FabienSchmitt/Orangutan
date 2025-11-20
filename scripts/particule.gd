@@ -42,9 +42,6 @@ func update_velocity_to_avoid_obstacles() -> void:
 			return
 
 
-	# we have checked all the enabled rays. 
-
-
 
 
 func _on_area_entered(area: Area2D) -> void:

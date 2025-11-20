@@ -21,31 +21,24 @@ func _physics_process(delta: float) -> void:
 	compute_neighboring_cells()
 
 	for p in _particules:
-		compute_velocity(p)
-		var boid_force = get_boids_force(p, get_neighbors(p)).normalized() 
-		p.velocity += boid_force * species.boids_weight
-		if (species.has_queen):
-			var queen_force = get_queen_force(p)
-			p.velocity += queen_force * species.queen_weight
-
-		p.velocity = p.velocity.limit_length(species.max_speed)
-		if p.velocity.length() < species.starting_speed:
-			p.velocity = p.velocity.normalized() * species.starting_speed
-
-
+		compute_velocity(p)		
 		p.update_velocity_to_avoid_obstacles()
 		p.global_position = p.global_position + p.velocity * delta
+
 		# Go to the other side of the screen
 		p.global_position = move_to_the_other_side(p.global_position)
 		p.curve.add_point(p.position)
 		if (p.curve.point_count > 200): p.curve.remove_point(0)
 
-		p.rotation = p.velocity.angle()
+		p.rotation = p.velocity.angle() + deg_to_rad(90)
 	queue_redraw()
 
 func compute_velocity(p: Particule) -> void:
 	var boid_force = get_boids_force(p, get_neighbors(p)).normalized() 
 	p.velocity += boid_force * species.boids_weight
+	if (species.has_queen):
+		var queen_force = get_queen_force(p)
+		p.velocity += queen_force * species.queen_weight
 	p.velocity = p.velocity.limit_length(species.max_speed)
 	if p.velocity.length() < species.starting_speed:
 		p.velocity = p.velocity.normalized() * species.starting_speed
@@ -59,7 +52,7 @@ func _create_particules() -> void :
 	print("color : ", species.name)
 	for i in range(species.boids_size):
 		var angle = randf() * TAU
-		var radius = randf() * 20
+		var radius = randf() * 300
 		var pos = Vector2(cos(angle), sin(angle)) * radius
 		var particule = _particule_scene.instantiate()
 		particule.species = species

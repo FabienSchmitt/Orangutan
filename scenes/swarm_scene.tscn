@@ -1,9 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://e1vaj8hdq4kq"]
+[gd_scene load_steps=10 format=3 uid="uid://e1vaj8hdq4kq"]
 
-[ext_resource type="Script" uid="uid://d02q6whmxc8lk" path="res://scripts/boids.gd" id="1_7meim"]
+[ext_resource type="Script" uid="uid://dedg1j62d0xrj" path="res://scripts/Boids.gd" id="1_7meim"]
 [ext_resource type="PackedScene" uid="uid://bunw05d0anxg3" path="res://scenes/queen_player.tscn" id="1_e27oo"]
-[ext_resource type="Resource" uid="uid://dlu3nvm0saysm" path="res://resources/species/blue.tres" id="2_txlhi"]
-[ext_resource type="Resource" uid="uid://b7pbck4g32bcj" path="res://resources/species/red.tres" id="3_e27oo"]
+[ext_resource type="Script" uid="uid://c4nvr37fu12r3" path="res://scripts/SwarmScene.gd" id="1_ebm7b"]
+[ext_resource type="Script" path="res://scripts/Species.gd" id="3_ebm7b"]
+[ext_resource type="Resource" uid="uid://cgylf2d8djueg" path="res://resources/species/yellow.tres" id="4_ebm7b"]
+
+[sub_resource type="Resource" id="Resource_e27oo"]
+script = ExtResource("3_ebm7b")
+metadata/_custom_type_script = "uid://bsyxko3y0tmwo"
 
 [sub_resource type="Gradient" id="Gradient_cogr6"]
 offsets = PackedFloat32Array(0.99333334, 1)
@@ -15,22 +20,25 @@ gradient = SubResource("Gradient_cogr6")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ebm7b"]
 
 [node name="swarm_scene" type="Node2D"]
+script = ExtResource("1_ebm7b")
 
 [node name="Queen_player" parent="." instance=ExtResource("1_e27oo")]
+position = Vector2(621, 198)
 
 [node name="Boids" type="Node2D" parent="." node_paths=PackedStringArray("queen")]
 position = Vector2(599, 328)
 script = ExtResource("1_7meim")
 draw_lines = false
-species = ExtResource("2_txlhi")
+species = ExtResource("4_ebm7b")
 queen = NodePath("../Queen_player")
 
 [node name="Predators" type="Node2D" parent="."]
+visible = false
 position = Vector2(132, 118)
 scale = Vector2(2, 2)
 script = ExtResource("1_7meim")
 draw_lines = false
-species = ExtResource("3_e27oo")
+species = SubResource("Resource_e27oo")
 
 [node name="obstacle" type="StaticBody2D" parent="." groups=["obstacle"]]
 position = Vector2(385, 273)
