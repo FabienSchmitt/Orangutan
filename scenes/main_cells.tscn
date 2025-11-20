@@ -4,8 +4,8 @@
 [ext_resource type="Script" uid="uid://bvl1c72acwqqe" path="res://scripts/main_cells.gd" id="1_m2aax"]
 [ext_resource type="Resource" uid="uid://cgylf2d8djueg" path="res://resources/species/yellow.tres" id="2_d43la"]
 [ext_resource type="Shader" uid="uid://2gg37bjpcn8r" path="res://scenes/main_cells.gdshader" id="2_gb4nr"]
-[ext_resource type="Resource" uid="uid://b7pbck4g32bcj" path="res://resources/species/red.tres" id="3_j0jj5"]
-[ext_resource type="Script" uid="uid://deomiu24t50i5" path="res://scripts/FlowFieldManager.gd" id="5_m2aax"]
+[ext_resource type="Resource" uid="uid://c3cqp0a8m2hyy" path="res://resources/species/red.tres" id="3_j0jj5"]
+[ext_resource type="Script" uid="uid://deomiu24t50i5" path="res://scripts/flow_field_manager.gd" id="5_m2aax"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_d43la"]
 shader = ExtResource("2_gb4nr")
