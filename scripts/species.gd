@@ -10,6 +10,7 @@ extends Resource
 @export var align_weight: float = 0.5
 @export var cohesion_weight: float = 2
 @export var avoid_weight: float = 20
+@export var queen_weight: float = 0
 @export var fleeing_weight: float = 20
 @export var chasing_weight: float = 0
 @export var visibility_threshold := 75

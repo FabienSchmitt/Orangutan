@@ -17,24 +17,34 @@ var reached = false
 var species: Species
 var current_color : Color
 
+var active_ray := 0
+var obstace_in_front = false
+@onready var rays : Array[RayCast2D]= [$Ray1, $Ray2, $Ray3, $Ray4, $Ray5, $Ray6, $Ray7, $Ray8, $Ray9, $Ray10, $Ray11]
+
 func _ready() -> void:
 	var base_color = default_color if species == null else species.color
 	current_color = base_color + Color((randf() - 0.5) /2.0, (randf() - 0.5)/ 2.0, (randf() - 0.5)/2.0)
 	sprite.modulate = current_color
 	self.area_entered.connect(_on_area_entered)
 	curve = Curve2D.new()
+	
+
+func update_velocity_to_avoid_obstacles() -> void: 
+	# we start with the forward direction first and we return the new velocity based on obstacle avoidance.
+	for ray in rays:
+		if ray.is_colliding(): 
+			print("collision with ray # ", rays.find(ray), " - ", ray.target_position, " velocity is ", velocity)
+		else : 			
+			velocity = velocity.rotated(ray.transform.get_rotation())
+			if rays.find(ray) != 0 : 
+				print("collision with ray # ", rays.find(ray), " - ", ray.target_position, " new velocity is ", velocity)
+
+			return
 
 
-# func _physics_process(delta: float) -> void:
-# 	var direction := (target.global_position - position).normalized()
-# 	position = position + direction * speed * delta
-# 	material.set_shader_parameter("time", Time.get_ticks_msec() / 1000.0)
+	# we have checked all the enabled rays. 
 
 
-func move(avoidance_steering: Vector2, delta: float):
-	if reached : return
-	var steering = avoidance_steering.normalized() + (target.global_position - global_position).normalized() *1.5
-	position = position + steering * speed * delta
 
 
 func _on_area_entered(area: Area2D) -> void:
