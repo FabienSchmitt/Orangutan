@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Species" load_steps=2 format=3 uid="uid://dlu3nvm0saysm"]
+
+[ext_resource type="Script" uid="uid://c2vujie8qnt5x" path="res://scripts/species.gd" id="1_n8r3p"]
+
+[resource]
+script = ExtResource("1_n8r3p")
+color = Color(0, 0.105882354, 1, 1)
+name = "blue"
+metadata/_custom_type_script = "uid://c2vujie8qnt5x"

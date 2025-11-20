@@ -3,8 +3,8 @@ extends Resource
 
 @export var color : Color = Color.GRAY
 @export var name : String = "Neutral"
-@export var predators : Array[String] = []
-@export var preys : Array[String] = []
+@export var predators : Array[Species] = []
+var preys : Array[Species] = []
 @export var has_queen := false
 @export var boids_weight: float = 2
 @export var align_weight: float = 0.5

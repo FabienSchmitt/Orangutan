@@ -4,7 +4,6 @@ extends Node2D
 @export var species: Species
 @export var queen: Node2D
 
-#@onready var default_species :Species = preload("res://resources/species/red.tres")
 var _particules : Array[Particule]
 var _particule_scene: PackedScene
 var _noise: FastNoiseLite
@@ -15,6 +14,9 @@ func _ready() -> void:
 	_particule_scene = preload("res://scenes/Particule.tscn")
 	_create_particules()
 	create_noise()
+	for predator in species.predators:
+		if predator.preys.has(species) : continue
+		predator.preys.append(species)
 
 
 func _physics_process(delta: float) -> void:
@@ -36,9 +38,15 @@ func _physics_process(delta: float) -> void:
 func compute_velocity(p: Particule) -> void:
 	var boid_force = get_boids_force(p, get_neighbors(p)).normalized() 
 	p.velocity += boid_force * species.boids_weight
-	if (species.has_queen):
+	if species.has_queen:
 		var queen_force = get_queen_force(p)
 		p.velocity += queen_force * species.queen_weight
+	# can be optimize if we know if there are any preys nearby 
+	if species.preys != []:
+		var hunting_force = get_hunting_force(p)
+		p.velocity += hunting_force * species.chasing_weight
+
+
 	p.velocity = p.velocity.limit_length(species.max_speed)
 	if p.velocity.length() < species.starting_speed:
 		p.velocity = p.velocity.normalized() * species.starting_speed
@@ -61,12 +69,16 @@ func _create_particules() -> void :
 		particule.velocity = Vector2(randf() -0.5, randf() - 0.5).normalized() * species.starting_speed
 		add_child(particule)
 		_particules.append(particule)
+		particule.tree_exiting.connect(remove_dead_particule.bind(particule))
 
 func create_noise() -> void:
 	_noise = FastNoiseLite.new()
 	_noise.noise_type = FastNoiseLite.TYPE_PERLIN
 	_noise.seed = randi()  # Optional random seed
 	_noise.frequency = 0.02
+
+func remove_dead_particule(p: Particule) -> void:
+	_particules.erase(p)
 
 func move_to_the_other_side(pos: Vector2) -> Vector2:
 	var viewport_size = get_viewport_rect().size
@@ -92,6 +104,9 @@ func clean_up():
 
 func get_queen_force(p: Particule):
 	return (queen.global_position - p.global_position).normalized()
+
+func get_hunting_force(p: Particule):
+	return p.get_hunting_direction().normalized()
 
 func get_boids_force(p: Particule, n: Array[Particule]) -> Vector2:
 	if n == []:
