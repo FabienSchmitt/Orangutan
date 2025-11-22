@@ -46,6 +46,52 @@ texture = SubResource("GradientTexture2D_e27oo")
 scale = Vector2(3.2000008, 3.1599998)
 shape = SubResource("RectangleShape2D_ebm7b")
 
+[node name="obstacle4" type="StaticBody2D" parent="." groups=["obstacle"]]
+position = Vector2(654, -218)
+scale = Vector2(48.28001, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="obstacle4"]
+texture = SubResource("GradientTexture2D_e27oo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="obstacle4" groups=["obstacle"]]
+scale = Vector2(3.2000008, 3.1599998)
+shape = SubResource("RectangleShape2D_ebm7b")
+
+[node name="obstacle6" type="StaticBody2D" parent="." groups=["obstacle"]]
+position = Vector2(-892, 139)
+rotation = -1.5751183
+scale = Vector2(48.28001, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="obstacle6"]
+texture = SubResource("GradientTexture2D_e27oo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="obstacle6" groups=["obstacle"]]
+scale = Vector2(3.2000008, 3.1599998)
+shape = SubResource("RectangleShape2D_ebm7b")
+
+[node name="obstacle7" type="StaticBody2D" parent="." groups=["obstacle"]]
+position = Vector2(2155, -1)
+rotation = -1.5751183
+scale = Vector2(48.28001, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="obstacle7"]
+texture = SubResource("GradientTexture2D_e27oo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="obstacle7" groups=["obstacle"]]
+scale = Vector2(3.2000008, 3.1599998)
+shape = SubResource("RectangleShape2D_ebm7b")
+
+[node name="obstacle5" type="StaticBody2D" parent="." groups=["obstacle"]]
+position = Vector2(648, 866)
+scale = Vector2(48.28001, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="obstacle5"]
+texture = SubResource("GradientTexture2D_e27oo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="obstacle5" groups=["obstacle"]]
+scale = Vector2(3.2000008, 3.1599998)
+shape = SubResource("RectangleShape2D_ebm7b")
+
 [node name="obstacle3" type="StaticBody2D" parent="." groups=["obstacle"]]
 position = Vector2(199.00003, 507)
 rotation = -1.8325958

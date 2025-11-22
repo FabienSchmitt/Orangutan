@@ -46,6 +46,14 @@ func get_hunting_direction() -> Vector2:
 				return collider.global_position - global_position
 	return Vector2.ZERO
 
+func get_fleeing_direction() -> Vector2:
+	for ray in predator_rays:
+		if ray.is_colliding():
+			var collider := ray.get_collider() as Particule
+			if collider != null && species.predators.find(collider.species) >= 0:
+				return global_position - collider.global_position
+	return Vector2.ZERO
+
 func _on_area_entered(a: Area2D) -> void:
 	if not (a is Particule) : return
 	var area :Particule = a 

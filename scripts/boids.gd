@@ -28,7 +28,7 @@ func _physics_process(delta: float) -> void:
 		p.global_position = p.global_position + p.velocity * delta
 
 		# Go to the other side of the screen
-		p.global_position = move_to_the_other_side(p.global_position)
+		#p.global_position = move_to_the_other_side(p.global_position)
 		p.curve.add_point(p.position)
 		if (p.curve.point_count > 200): p.curve.remove_point(0)
 
@@ -46,6 +46,9 @@ func compute_velocity(p: Particule) -> void:
 		var hunting_force = get_hunting_force(p)
 		p.velocity += hunting_force * species.chasing_weight
 
+	if species.predators != []:
+		var fleeing_force = get_fleeing_force(p)
+		p.velocity += fleeing_force * species.fleeing_weight
 
 	p.velocity = p.velocity.limit_length(species.max_speed)
 	if p.velocity.length() < species.starting_speed:
@@ -107,6 +110,9 @@ func get_queen_force(p: Particule):
 
 func get_hunting_force(p: Particule):
 	return p.get_hunting_direction().normalized()
+
+func get_fleeing_force(p: Particule):
+	return p.get_fleeing_direction().normalized()
 
 func get_boids_force(p: Particule, n: Array[Particule]) -> Vector2:
 	if n == []:

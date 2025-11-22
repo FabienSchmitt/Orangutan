@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="SpeciesDb" load_steps=7 format=3 uid="uid://dynvblb8b27dt"]
+
+[ext_resource type="Script" uid="uid://bb7kri7frcwfi" path="res://scripts/species_db.gd" id="1_qr54w"]
+[ext_resource type="Script" uid="uid://c2vujie8qnt5x" path="res://scripts/species.gd" id="2_fnjtv"]
+[ext_resource type="Resource" uid="uid://dlu3nvm0saysm" path="res://resources/species/blue.tres" id="3_efa3h"]
+[ext_resource type="Resource" uid="uid://y4ny7p2yk2g3" path="res://resources/species/neurtal.tres" id="4_jm0vy"]
+[ext_resource type="Resource" uid="uid://c3cqp0a8m2hyy" path="res://resources/species/red.tres" id="5_5bp21"]
+[ext_resource type="Resource" uid="uid://cgylf2d8djueg" path="res://resources/species/yellow.tres" id="6_vdma0"]
+
+[resource]
+script = ExtResource("1_qr54w")
+species_list = Array[ExtResource("2_fnjtv")]([ExtResource("3_efa3h"), ExtResource("4_jm0vy"), ExtResource("5_5bp21"), ExtResource("6_vdma0")])
+metadata/_custom_type_script = "uid://bb7kri7frcwfi"

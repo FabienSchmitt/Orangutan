@@ -1,8 +1,19 @@
-[gd_scene load_steps=2 format=3 uid="uid://xp278vjewkh8"]
+[gd_scene load_steps=5 format=3 uid="uid://xp278vjewkh8"]
 
-[ext_resource type="PackedScene" uid="uid://bunw05d0anxg3" path="res://scenes/queen_player.tscn" id="1_errlg"]
+[ext_resource type="Script" uid="uid://dedg1j62d0xrj" path="res://scripts/boids.gd" id="1_bl13t"]
+[ext_resource type="Script" uid="uid://c4nvr37fu12r3" path="res://scripts/swarm_scene.gd" id="1_iyx0m"]
+[ext_resource type="Script" uid="uid://c2vujie8qnt5x" path="res://scripts/species.gd" id="2_iyx0m"]
+
+[sub_resource type="Resource" id="Resource_74lek"]
+script = ExtResource("2_iyx0m")
+boids_size = 200
+metadata/_custom_type_script = "uid://c2vujie8qnt5x"
 
 [node name="test" type="Node2D"]
+script = ExtResource("1_iyx0m")
 
-[node name="Queen_player" parent="." instance=ExtResource("1_errlg")]
-position = Vector2(444, 201)
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(594, 263)
+script = ExtResource("1_bl13t")
+draw_lines = false
+species = SubResource("Resource_74lek")

@@ -1,14 +1,12 @@
-[gd_resource type="Resource" script_class="Species" load_steps=3 format=3 uid="uid://cgylf2d8djueg"]
+[gd_resource type="Resource" script_class="Species" load_steps=2 format=3 uid="uid://cgylf2d8djueg"]
 
 [ext_resource type="Script" uid="uid://c2vujie8qnt5x" path="res://scripts/species.gd" id="1_fmem5"]
-[ext_resource type="Resource" uid="uid://c3cqp0a8m2hyy" path="res://resources/species/red.tres" id="2_mvhg5"]
 
 [resource]
 script = ExtResource("1_fmem5")
 color = Color(0.8901961, 0.9490196, 0.09803922, 1)
 name = "yellow"
-predators = Array[ExtResource("1_fmem5")]([ExtResource("2_mvhg5")])
-has_queen = true
+predator_names = Array[String](["red"])
 boids_weight = 20.0
 align_weight = 5.0
 cohesion_weight = 10.0
