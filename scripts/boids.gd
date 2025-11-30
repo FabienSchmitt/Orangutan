@@ -11,13 +11,9 @@ var _active_cells: Dictionary
 var _active_neighbors: Dictionary
 
 func _ready() -> void:
-	_particule_scene = preload("res://scenes/Particule.tscn")
+	_particule_scene = preload("res://scenes/particule.tscn")
 	_create_particules()
 	create_noise()
-	for predator in species.predators:
-		if predator.preys.has(species) : continue
-		predator.preys.append(species)
-
 
 func _physics_process(delta: float) -> void:
 	compute_neighboring_cells()

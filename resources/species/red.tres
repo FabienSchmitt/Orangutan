@@ -4,10 +4,10 @@
 
 [resource]
 script = ExtResource("1_mjqt3")
-color = Color(0.55862, 0.25395617, 0.27135873, 1)
+color = Color(0.6666667, 0.06666667, 0.015686275, 1)
 name = "red"
 prey_names = Array[String](["yellow"])
-boids_weight = 10.0
+boids_weight = 20.0
 align_weight = 0.0
 cohesion_weight = 0.0
 fleeing_weight = 0.0

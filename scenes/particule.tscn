@@ -11,6 +11,8 @@ shader_parameter/time = 0.0
 
 [node name="Particule" type="Area2D"]
 material = SubResource("ShaderMaterial_1c1s6")
+collision_layer = 2
+collision_mask = 7
 script = ExtResource("2_1c1s6")
 
 [node name="Triangle" type="Sprite2D" parent="."]
@@ -27,120 +29,176 @@ visible = false
 [node name="VisualRay1" type="RayCast2D" parent="VisualRays"]
 unique_name_in_owner = true
 target_position = Vector2(0, -30)
+collision_mask = 4
 
 [node name="VisualRay2" type="RayCast2D" parent="VisualRays"]
 unique_name_in_owner = true
 rotation = 0.17453294
 scale = Vector2(0.9999999, 0.9999999)
 target_position = Vector2(0, -30)
+collision_mask = 4
 
 [node name="VisualRay3" type="RayCast2D" parent="VisualRays"]
 unique_name_in_owner = true
 rotation = -0.17453294
 scale = Vector2(0.9999999, 0.9999999)
 target_position = Vector2(0, -30)
+collision_mask = 4
 
 [node name="VisualRay4" type="RayCast2D" parent="VisualRays"]
 unique_name_in_owner = true
 rotation = 0.34906584
 scale = Vector2(0.99999994, 0.99999994)
 target_position = Vector2(0, -30)
+collision_mask = 4
 
 [node name="VisualRay5" type="RayCast2D" parent="VisualRays"]
 unique_name_in_owner = true
 rotation = -0.34906584
 scale = Vector2(0.99999994, 0.99999994)
 target_position = Vector2(0, -30)
+collision_mask = 4
 
 [node name="VisualRay6" type="RayCast2D" parent="VisualRays"]
 unique_name_in_owner = true
 rotation = 0.5235988
 target_position = Vector2(0, -30)
+collision_mask = 4
 
 [node name="VisualRay7" type="RayCast2D" parent="VisualRays"]
 unique_name_in_owner = true
 rotation = -0.5235988
 target_position = Vector2(0, -30)
+collision_mask = 4
 
 [node name="VisualRay8" type="RayCast2D" parent="VisualRays"]
 unique_name_in_owner = true
 rotation = 0.6981317
 scale = Vector2(0.9999999, 0.9999999)
 target_position = Vector2(0, -30)
+collision_mask = 4
 
 [node name="VisualRay9" type="RayCast2D" parent="VisualRays"]
 unique_name_in_owner = true
 rotation = -0.6981317
 scale = Vector2(0.9999999, 0.9999999)
 target_position = Vector2(0, -30)
+collision_mask = 4
 
 [node name="VisualRay10" type="RayCast2D" parent="VisualRays"]
 unique_name_in_owner = true
 rotation = 0.87266463
 target_position = Vector2(0, -30)
+collision_mask = 4
 
 [node name="VisualRay11" type="RayCast2D" parent="VisualRays"]
 unique_name_in_owner = true
 rotation = -0.87266463
 target_position = Vector2(0, -30)
+collision_mask = 4
 
 [node name="Node2D" type="Node2D" parent="."]
 
 [node name="PredatorRay1" type="RayCast2D" parent="Node2D"]
 unique_name_in_owner = true
+position = Vector2(-4, 5)
+rotation = 0.7853982
+collision_mask = 2
 collide_with_areas = true
+collide_with_bodies = false
 
 [node name="PredatorRay2" type="RayCast2D" parent="Node2D"]
 unique_name_in_owner = true
-rotation = 0.5235988
+position = Vector2(-5.0000005, 3.0000005)
+rotation = 1.1780972
+collision_mask = 2
 collide_with_areas = true
+collide_with_bodies = false
 
 [node name="PredatorRay3" type="RayCast2D" parent="Node2D"]
 unique_name_in_owner = true
-rotation = 1.0471976
+position = Vector2(-5, 0)
+rotation = 1.5707964
+collision_mask = 2
 collide_with_areas = true
+collide_with_bodies = false
 
 [node name="PredatorRay4" type="RayCast2D" parent="Node2D"]
 unique_name_in_owner = true
-rotation = 1.5707964
+position = Vector2(-4, -3)
+rotation = 1.9634954
+collision_mask = 2
 collide_with_areas = true
+collide_with_bodies = false
 
 [node name="PredatorRay5" type="RayCast2D" parent="Node2D"]
 unique_name_in_owner = true
-rotation = 2.0943952
+position = Vector2(-2, -3)
+rotation = 2.3561945
+collision_mask = 2
 collide_with_areas = true
+collide_with_bodies = false
 
 [node name="PredatorRay6" type="RayCast2D" parent="Node2D"]
 unique_name_in_owner = true
-rotation = 2.6179938
+position = Vector2(-2, -5)
+rotation = 2.7488935
+collision_mask = 2
 collide_with_areas = true
+collide_with_bodies = false
 
 [node name="PredatorRay7" type="RayCast2D" parent="Node2D"]
 unique_name_in_owner = true
+position = Vector2(0, -3)
 rotation = 3.1415927
+collision_mask = 2
 collide_with_areas = true
+collide_with_bodies = false
 
 [node name="PredatorRay8" type="RayCast2D" parent="Node2D"]
 unique_name_in_owner = true
-rotation = 3.6651914
+position = Vector2(2.0000002, -3.0000005)
+rotation = 3.5342917
+collision_mask = 2
 collide_with_areas = true
+collide_with_bodies = false
 
 [node name="PredatorRay9" type="RayCast2D" parent="Node2D"]
 unique_name_in_owner = true
-rotation = 4.1887903
+position = Vector2(4, -3)
+rotation = 3.9269907
+collision_mask = 2
 collide_with_areas = true
+collide_with_bodies = false
 
 [node name="PredatorRay10" type="RayCast2D" parent="Node2D"]
 unique_name_in_owner = true
-rotation = 4.712389
+position = Vector2(3.9999998, -3)
+rotation = 4.3196898
+collision_mask = 2
 collide_with_areas = true
+collide_with_bodies = false
 
 [node name="PredatorRay11" type="RayCast2D" parent="Node2D"]
 unique_name_in_owner = true
-rotation = 5.2359877
+position = Vector2(4, 0)
+rotation = 4.712389
+collision_mask = 2
 collide_with_areas = true
+collide_with_bodies = false
 
 [node name="PredatorRay12" type="RayCast2D" parent="Node2D"]
 unique_name_in_owner = true
-rotation = 5.7595863
+position = Vector2(2, 0)
+rotation = 5.105088
+collision_mask = 2
 collide_with_areas = true
+collide_with_bodies = false
+
+[node name="PredatorRay13" type="RayCast2D" parent="Node2D"]
+unique_name_in_owner = true
+position = Vector2(4, 5)
+rotation = 5.497787
+collision_mask = 2
+collide_with_areas = true
+collide_with_bodies = false

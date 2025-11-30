@@ -1,0 +1,66 @@
+[gd_scene load_steps=5 format=3 uid="uid://b3shhebojwl1s"]
+
+[ext_resource type="Script" uid="uid://bimrmq72ktg18" path="res://scripts/player.gd" id="1_g2els"]
+[ext_resource type="Texture2D" uid="uid://c2nbgmoyoswh" path="res://images/triangle.png" id="2_qhqgy"]
+[ext_resource type="Texture2D" uid="uid://bdl8x2wsxmmqj" path="res://images/white_circle.png" id="3_qhqgy"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g2els"]
+radius = 14.4
+height = 50.8
+
+[node name="player" type="CharacterBody2D"]
+script = ExtResource("1_g2els")
+jump_height = null
+jump_height_compensation_factor = null
+time_till_jump_apex = null
+up_gravity = null
+down_gravity = null
+max_fall_speed = null
+time_for_upward_cancel = null
+apex_threshold = null
+apex_hang_time = null
+jump_buffer_time = null
+jump_coyote_time = null
+max_walk_speed = null
+max_run_speed = null
+ground_acceleration = null
+ground_deceleration = null
+air_acceleration = null
+air_deceleration = null
+dash_distance = null
+dash_time = null
+dash_cooldown = null
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-0.9999981, -27.999998)
+texture = ExtResource("2_qhqgy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5999985, -25.599998)
+shape = SubResource("CapsuleShape2D_g2els")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(-1, -26)
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(13, -38)
+scale = Vector2(0.01, 0.01)
+texture = ExtResource("3_qhqgy")
+
+[node name="Timers" type="Node" parent="."]
+
+[node name="CoyoteTimer" type="Timer" parent="Timers"]
+unique_name_in_owner = true
+one_shot = true
+
+[node name="BufferedJumpTimer" type="Timer" parent="Timers"]
+unique_name_in_owner = true
+one_shot = true
+
+[node name="DashCooldownTimer" type="Timer" parent="Timers"]
+unique_name_in_owner = true
+one_shot = true
+
+[node name="IsDashingTimer" type="Timer" parent="Timers"]
+unique_name_in_owner = true
+one_shot = true

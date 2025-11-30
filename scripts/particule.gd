@@ -21,11 +21,11 @@ var active_ray := 0
 var obstace_in_front = false
 
 @onready var visual_rays : Array[RayCast2D]= [%VisualRay1, %VisualRay2, %VisualRay3, %VisualRay4, %VisualRay5, %VisualRay6, %VisualRay7, %VisualRay8, %VisualRay9, %VisualRay10, %VisualRay11]
-@onready var predator_rays : Array[RayCast2D] = [%PredatorRay1, %PredatorRay2, %PredatorRay3, %PredatorRay4, %PredatorRay5, %PredatorRay6, %PredatorRay7, %PredatorRay8, %PredatorRay9, %PredatorRay10, %PredatorRay11]
+@onready var predator_rays : Array[RayCast2D] = [%PredatorRay1, %PredatorRay2, %PredatorRay3, %PredatorRay4, %PredatorRay5, %PredatorRay6, %PredatorRay7, %PredatorRay8, %PredatorRay9, %PredatorRay10, %PredatorRay11, %PredatorRay12, %PredatorRay13]
 
 func _ready() -> void:
 	var base_color = default_color if species == null else species.color
-	current_color = base_color + Color((randf() - 0.5) /2.0, (randf() - 0.5)/ 2.0, (randf() - 0.5)/2.0)
+	current_color = base_color + Color((randf() - 0.5) /5.0, (randf() - 0.5)/ 5.0, (randf() - 0.5)/5.0)
 	sprite.modulate = current_color
 	if species.predators != null:
 		self.area_entered.connect(_on_area_entered)
@@ -37,6 +37,9 @@ func update_velocity_to_avoid_obstacles() -> void:
 		if !ray.is_colliding(): 
 			velocity = velocity.rotated(ray.transform.get_rotation())
 			return
+
+	# all ray collides, we go the opposite way
+	velocity = -velocity
 
 func get_hunting_direction() -> Vector2:
 	for ray in predator_rays:
