@@ -9,6 +9,7 @@ radius = 14.4
 height = 50.8
 
 [node name="player" type="CharacterBody2D"]
+collision_mask = 5
 script = ExtResource("1_g2els")
 jump_height = null
 jump_height_compensation_factor = null
@@ -38,9 +39,6 @@ texture = ExtResource("2_qhqgy")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5999985, -25.599998)
 shape = SubResource("CapsuleShape2D_g2els")
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(-1, -26)
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
 position = Vector2(13, -38)

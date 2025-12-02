@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://6wbrnqpdor6"]
+[gd_scene load_steps=7 format=3 uid="uid://6wbrnqpdor6"]
 
 [ext_resource type="Script" uid="uid://ck1x04edlqbl6" path="res://scripts/particule.gd" id="2_1c1s6"]
 [ext_resource type="Shader" uid="uid://2gg37bjpcn8r" path="res://scenes/main_cells.gdshader" id="3_1c1s6"]
@@ -8,6 +8,15 @@
 shader = ExtResource("3_1c1s6")
 shader_parameter/target_pos = Vector2(0, 0)
 shader_parameter/time = 0.0
+
+[sub_resource type="Gradient" id="Gradient_1c1s6"]
+offsets = PackedFloat32Array(0, 0.7625)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_l5ohe"]
+gradient = SubResource("Gradient_1c1s6")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
 
 [node name="Particule" type="Area2D"]
 material = SubResource("ShaderMaterial_1c1s6")
@@ -202,3 +211,11 @@ rotation = 5.497787
 collision_mask = 2
 collide_with_areas = true
 collide_with_bodies = false
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(0.96402913, 0.98860127, 0.7461965, 0.8901961)
+range_item_cull_mask = 3
+shadow_enabled = true
+shadow_item_cull_mask = 2
+texture = SubResource("GradientTexture2D_l5ohe")
+texture_scale = 0.8

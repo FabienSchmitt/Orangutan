@@ -59,7 +59,7 @@ func _create_particules() -> void :
 	print("color : ", species.name)
 	for i in range(species.boids_size):
 		var angle = randf() * TAU
-		var radius = randf() * 300
+		var radius = randf() * 50
 		var pos = Vector2(cos(angle), sin(angle)) * radius
 		var particule = _particule_scene.instantiate()
 		particule.species = species

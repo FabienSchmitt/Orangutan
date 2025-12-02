@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="My2DGame1"
-run/main_scene="uid://e1vaj8hdq4kq"
+run/main_scene="uid://xnv6adoji4ub"
 config/features=PackedStringArray("4.5", "Forward Plus")
 boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/show_image=false
@@ -25,6 +25,9 @@ GameManager="*res://scripts/game_manager.gd"
 
 [display]
 
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/size/borderless=true
 window/stretch/mode="canvas_items"
 
 [dotnet]
@@ -84,6 +87,10 @@ player_dash={
 2d_physics/layer_1="player"
 2d_physics/layer_2="predators"
 2d_physics/layer_3="environment"
+
+[rendering]
+
+environment/defaults/default_clear_color=Color(0.0058037043, 0.0120128505, 0.019148858, 1)
 
 [xr]
 

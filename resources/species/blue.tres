@@ -6,4 +6,11 @@
 script = ExtResource("1_n8r3p")
 color = Color(0, 0.105882354, 1, 1)
 name = "blue"
+has_queen = true
+boids_weight = 20.0
+align_weight = 5.0
+cohesion_weight = 20.0
+queen_weight = 3.0
+boids_size = 10
+max_speed = 150
 metadata/_custom_type_script = "uid://c2vujie8qnt5x"
