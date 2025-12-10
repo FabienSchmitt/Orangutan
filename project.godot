@@ -10,10 +10,10 @@ config_version=5
 
 [application]
 
-config/name="My2DGame1"
-run/main_scene="uid://xnv6adoji4ub"
+config/name="Orangutan"
+run/main_scene="uid://dn755xtgxqtde"
 config/features=PackedStringArray("4.5", "Forward Plus")
-boot_splash/bg_color=Color(0, 0, 0, 1)
+boot_splash/bg_color=Color(0.28485042, 0.28485024, 0.2848502, 1)
 boot_splash/show_image=false
 boot_splash/image="uid://b0lisltulglyj"
 config/icon="uid://b8gg7tvtwi70b"
