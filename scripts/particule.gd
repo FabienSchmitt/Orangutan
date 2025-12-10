@@ -6,10 +6,6 @@ class_name Particule
 @onready var sprite : Sprite2D = $Triangle
 
 var curve: Curve2D
-#temp
-var target : Cell
-var source: Cell
-
 var velocity = Vector2.ZERO
 var max_speed = 200
 var max_speed_v = Vector2.ONE * max_speed

@@ -1,49 +1,120 @@
-[gd_scene load_steps=5 format=3 uid="uid://b3shhebojwl1s"]
+[gd_scene load_steps=25 format=3 uid="uid://b3shhebojwl1s"]
 
 [ext_resource type="Script" uid="uid://bimrmq72ktg18" path="res://scripts/player.gd" id="1_g2els"]
-[ext_resource type="Texture2D" uid="uid://c2nbgmoyoswh" path="res://images/triangle.png" id="2_qhqgy"]
-[ext_resource type="Texture2D" uid="uid://bdl8x2wsxmmqj" path="res://images/white_circle.png" id="3_qhqgy"]
+[ext_resource type="Texture2D" uid="uid://c5p2qhkh0e2ot" path="res://assets/character/fighter_Idle_0001.png" id="2_qfm1y"]
+[ext_resource type="Texture2D" uid="uid://w14gfvjvwwsv" path="res://assets/character/fighter_run_0017.png" id="2_ur7pv"]
+[ext_resource type="Texture2D" uid="uid://bd6owbrtuhymg" path="res://assets/character/fighter_Idle_0002.png" id="3_fulsm"]
+[ext_resource type="Texture2D" uid="uid://bodjrptrqnnnk" path="res://assets/character/fighter_run_0018.png" id="3_y4r1p"]
+[ext_resource type="Texture2D" uid="uid://clmlsqgrss182" path="res://assets/character/fighter_Idle_0003.png" id="4_4r5pv"]
+[ext_resource type="Texture2D" uid="uid://c3c33gnqf3enn" path="res://assets/character/fighter_run_0019.png" id="4_d2wvv"]
+[ext_resource type="Texture2D" uid="uid://cysohwmw3nojn" path="res://assets/character/fighter_run_0020.png" id="5_3v2ag"]
+[ext_resource type="Texture2D" uid="uid://btuaqskox3svx" path="res://assets/character/fighter_Idle_0004.png" id="5_60mlk"]
+[ext_resource type="Texture2D" uid="uid://cu0gfvg5nrqfv" path="res://assets/character/fighter_Idle_0005.png" id="6_i4ail"]
+[ext_resource type="Texture2D" uid="uid://u882caqanyvq" path="res://assets/character/fighter_run_0021.png" id="6_jej6c"]
+[ext_resource type="Texture2D" uid="uid://7311k7ptpd7e" path="res://assets/character/fighter_Idle_0006.png" id="7_a38lo"]
+[ext_resource type="Texture2D" uid="uid://bra0q63524hjs" path="res://assets/character/fighter_run_0022.png" id="7_f1ej7"]
+[ext_resource type="Texture2D" uid="uid://o3we34jqiw8b" path="res://assets/character/fighter_Idle_0007.png" id="8_4ni07"]
+[ext_resource type="Texture2D" uid="uid://dvwn8fuotqkoc" path="res://assets/character/fighter_run_0023.png" id="8_oprun"]
+[ext_resource type="Texture2D" uid="uid://b7tvepo5btkhr" path="res://assets/character/fighter_run_0024.png" id="9_a8ls1"]
+[ext_resource type="Texture2D" uid="uid://cipyafs3tpc5q" path="res://assets/character/fighter_Idle_0008.png" id="9_l71n6"]
+[ext_resource type="Texture2D" uid="uid://dvjuc15oq3bsa" path="res://assets/character/fighter_jump_0043.png" id="10_a38lo"]
+[ext_resource type="Texture2D" uid="uid://8d1fppc8fkut" path="res://assets/character/fighter_jump_0044.png" id="11_4ni07"]
+[ext_resource type="Texture2D" uid="uid://c1ginhu8j5mkb" path="res://assets/character/fighter_jump_0045.png" id="12_l71n6"]
+[ext_resource type="Texture2D" uid="uid://dfbpndp0t4gj3" path="res://assets/character/fighter_jump_0046.png" id="13_ke2ow"]
+[ext_resource type="Texture2D" uid="uid://v4rqry1be1b8" path="res://assets/character/fighter_jump_0047.png" id="14_ujl30"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g2els"]
-radius = 14.4
-height = 50.8
+radius = 7.0
+height = 44.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_i4ail"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_qfm1y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_fulsm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_4r5pv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_60mlk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_i4ail")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_a38lo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_4ni07")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_l71n6")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_a38lo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_4ni07")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_l71n6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_ke2ow")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_ujl30")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ur7pv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_y4r1p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_d2wvv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_3v2ag")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_jej6c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_f1ej7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_oprun")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_a8ls1")
+}],
+"loop": true,
+"name": &"walking",
+"speed": 15.0
+}]
 
 [node name="player" type="CharacterBody2D"]
 collision_mask = 5
 script = ExtResource("1_g2els")
-jump_height = null
-jump_height_compensation_factor = null
-time_till_jump_apex = null
-up_gravity = null
-down_gravity = null
-max_fall_speed = null
-time_for_upward_cancel = null
-apex_threshold = null
-apex_hang_time = null
-jump_buffer_time = null
-jump_coyote_time = null
-max_walk_speed = null
-max_run_speed = null
-ground_acceleration = null
-ground_deceleration = null
-air_acceleration = null
-air_deceleration = null
-dash_distance = null
-dash_time = null
-dash_cooldown = null
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-0.9999981, -27.999998)
-texture = ExtResource("2_qhqgy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5999985, -25.599998)
+position = Vector2(0, -20)
 shape = SubResource("CapsuleShape2D_g2els")
-
-[node name="Sprite2D2" type="Sprite2D" parent="."]
-position = Vector2(13, -38)
-scale = Vector2(0.01, 0.01)
-texture = ExtResource("3_qhqgy")
 
 [node name="Timers" type="Node" parent="."]
 
@@ -62,3 +133,15 @@ one_shot = true
 [node name="IsDashingTimer" type="Timer" parent="Timers"]
 unique_name_in_owner = true
 one_shot = true
+
+[node name="ApexHangTimer" type="Timer" parent="Timers"]
+unique_name_in_owner = true
+one_shot = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+texture_filter = 1
+position = Vector2(0, -31)
+scale = Vector2(0.3, 0.3)
+sprite_frames = SubResource("SpriteFrames_i4ail")
+animation = &"jump"

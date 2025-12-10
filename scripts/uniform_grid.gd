@@ -1,5 +1,5 @@
 class_name UniformGrid
-extends Resource
+extends Node2D
 
 # Grid dimensions and storage
 var width: int
@@ -56,3 +56,5 @@ func get_cell_from_world(world_pos: Vector2) -> UniformGridCell:
 	var x = clamp(floor(width * percent_x), 0, width -1)
 	var y = clamp(floor(height * percent_y), 0, height -1)
 	return cells[Vector2i(x, y)]
+
+	
