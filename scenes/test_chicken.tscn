@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://cjluwqcuqupfm"]
+
+[ext_resource type="PackedScene" uid="uid://nvllvgk10xrl" path="res://scenes/hill.tscn" id="1_gp4lm"]
+[ext_resource type="PackedScene" uid="uid://qlet80yw0bvq" path="res://scenes/chicken_rigged.tscn" id="2_1ir5a"]
+
+[node name="test chicken" type="Node2D" unique_id=1116271538]
+
+[node name="Hill" parent="." unique_id=2003817724 instance=ExtResource("1_gp4lm")]
+position = Vector2(-877, 621)
+
+[node name="chicken_rigged" parent="." unique_id=111128730 instance=ExtResource("2_1ir5a")]
+position = Vector2(513.99994, 416.99994)
+scale = Vector2(0.1, 0.1)
+slide_on_ceiling = false
+floor_stop_on_slope = false

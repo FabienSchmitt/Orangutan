@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cu0gfvg5nrqfv"
-path.s3tc="res://.godot/imported/fighter_Idle_0005.png-92febc91d722051ffb18b79ed584cb53.s3tc.ctex"
+uid="uid://k1i4by750cqq"
+path.s3tc="res://.godot/imported/chicken_silhouettes.png-c9883e42fe5fd3109619b2fb24145f15.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/character/fighter_Idle_0005.png"
-dest_files=["res://.godot/imported/fighter_Idle_0005.png-92febc91d722051ffb18b79ed584cb53.s3tc.ctex"]
+source_file="res://images/chicken_silhouettes.png"
+dest_files=["res://.godot/imported/chicken_silhouettes.png-c9883e42fe5fd3109619b2fb24145f15.s3tc.ctex"]
 
 [params]
 

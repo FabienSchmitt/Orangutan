@@ -8,12 +8,16 @@
 
 config_version=5
 
+[animation]
+
+compatibility/default_parent_skeleton_in_mesh_instance_3d=true
+
 [application]
 
 config/name="Orangutan"
 run/main_scene="uid://dn755xtgxqtde"
-config/features=PackedStringArray("4.5", "Forward Plus")
-boot_splash/bg_color=Color(0.28485042, 0.28485024, 0.2848502, 1)
+config/features=PackedStringArray("4.7", "Forward Plus")
+boot_splash/bg_color=Color(0.641934, 0.64193404, 0.64193386, 1)
 boot_splash/show_image=false
 boot_splash/image="uid://b0lisltulglyj"
 config/icon="uid://b8gg7tvtwi70b"
@@ -33,7 +37,7 @@ project/assembly_name="My2DGame1"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/gut/plugin.cfg")
+enabled=PackedStringArray("res://addons/auto_polygon2d_triangulation/plugin.cfg", "res://addons/gut/plugin.cfg")
 
 [filesystem]
 
@@ -84,10 +88,6 @@ player_dash={
 2d_physics/layer_1="player"
 2d_physics/layer_2="predators"
 2d_physics/layer_3="environment"
-
-[rendering]
-
-environment/defaults/default_clear_color=Color(0.0058037043, 0.0120128505, 0.019148858, 1)
 
 [xr]
 

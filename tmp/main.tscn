@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=3 uid="uid://dj1445otqsqc2"]
 
-[ext_resource type="PackedScene" path="res://tmp/player.tscn" id="1_ig7tw"]
-[ext_resource type="PackedScene" path="res://tmp/parallax_background.tscn" id="2_0xm2m"]
-[ext_resource type="AudioStream" uid="uid://58cudwbmvc7q" path="res://sound/Ian Sutherland - The Jungle.mp3" id="3_h2yge"]
+[ext_resource type="PackedScene" uid="uid://27mftwfbfn3j" path="res://scenes/player.tscn" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://c8j2xr20otw57" path="res://tmp/parallax_background.tscn" id="2_0xm2m"]
+[ext_resource type="AudioStream" uid="uid://15pn3ejyd62j" path="res://assets/audio/cinematic-action-jungle-drums-loop-125bpm-345139.mp3" id="3_g7h0s"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_0xm2m"]
 
@@ -66,9 +66,8 @@ texture = SubResource("PlaceholderTexture2D_1bvp3")
 [node name="Player" parent="." instance=ExtResource("1_ig7tw")]
 position = Vector2(12, -4)
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_h2yge")
-volume_db = -25.242
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_g7h0s")
 autoplay = true
 
 [editable path="Player"]
