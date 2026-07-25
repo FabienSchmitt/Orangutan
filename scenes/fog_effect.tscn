@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://8fpeo5wrc21e"]
+
+[ext_resource type="Shader" uid="uid://bonhq2hag0xml" path="res://assets/shader/fog.gdshader" id="1_qevs0"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4owau"]
+shader = ExtResource("1_qevs0")
+shader_parameter/base_color = Color(0.6509804, 0.78431374, 0.78431374, 0.8509804)
+shader_parameter/location_fade = 1.0
+
+[sub_resource type="Gradient" id="Gradient_k30yp"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_72ij4"]
+frequency = 0.0065
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_4ovnp"]
+noise = SubResource("FastNoiseLite_72ij4")
+color_ramp = SubResource("Gradient_k30yp")
+seamless = true
+normalize = false
+
+[node name="FogEffect" type="Control" unique_id=1377499407]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1013203689]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_4owau")
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(2.362475, 1.3045043)
+texture = SubResource("NoiseTexture2D_4ovnp")
