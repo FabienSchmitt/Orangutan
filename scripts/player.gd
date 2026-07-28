@@ -1,11 +1,11 @@
 extends CharacterBody2D
 
 @export_category("Jump")
-@export var jump_height: float = 150
+@export var jump_height: float = 180
 @export var jump_height_compensation_factor: float = 1.054
-@export var time_till_jump_apex : float = 0.45
+@export var time_till_jump_apex : float = 0.55
 @export var gravity_multiplier : float = 1.5
-@export var time_for_upward_cancel := 0.027
+@export var time_for_upward_cancel := 0.05
 @export var apex_threshold : float = 0.97
 @export var apex_hang_time : float = 0.075
 @export var jump_buffer_time : float = 0.125
@@ -36,6 +36,8 @@ var initial_jump_velocity: float:
 # timers
 @onready var _coyote_timer: Timer  = %CoyoteTimer
 @onready var _buffered_jump_timer: Timer = %BufferedJumpTimer
+@onready var _jump_cancel_timer: Timer = %JumpCancelTimer
+@onready var _time_till_apex_timer: Timer = %TimeTillApexTimer
 @onready var _is_dashing_timer: Timer = %IsDashingTimer
 @onready var _dash_cooldown_timer: Timer = %DashCooldownTimer
 @onready var _apex_hanging_timer: Timer = %ApexHangTimer
@@ -55,7 +57,7 @@ func _ready():
 	_state_machine.add_state(WALKING_STATE, walking, enter_walking, Callable())
 	_state_machine.add_state(DASHING_STATE, dashing, enter_dashing, leave_dashing)
 	_state_machine.add_state(JUMPING_STATE, jumping, enter_jumping, Callable())
-	_state_machine.add_state(FALLING_STATE, falling, Callable(), Callable())
+	_state_machine.add_state(FALLING_STATE, falling, Callable(), leave_falling)
 	_state_machine.set_initial_state(WALKING_STATE)
 
 func create_timer():
@@ -64,6 +66,8 @@ func create_timer():
 	_is_dashing_timer.wait_time = dash_time
 	_dash_cooldown_timer.wait_time = dash_cooldown
 	_apex_hanging_timer.wait_time = apex_hang_time
+	_jump_cancel_timer.wait_time = time_for_upward_cancel
+	_time_till_apex_timer.wait_time = time_till_jump_apex
 
 func _physics_process(delta):
 	_state_machine.update(delta)
@@ -80,13 +84,14 @@ func walking(delta: float):
 	elif velocity.length() < 0.1 && anim.animation != "idle":
 		anim.play("idle")
 
-	if !_buffered_jump_timer.is_stopped():
+	# if we have a buffered jump, we jump
+	if ! _buffered_jump_timer.is_stopped():
 		_state_machine.change_state(JUMPING_STATE)
 		return
 
 	move_horizontally(delta)
 
-	if Input.is_action_just_pressed("jump") : 
+	if Input.is_action_just_pressed("jump") && _jump_cancel_timer.is_stopped(): 
 		_state_machine.change_state(JUMPING_STATE)
 		return
 
@@ -96,6 +101,7 @@ func walking(delta: float):
 
 func enter_jumping():
 	velocity.y += initial_jump_velocity
+	_time_till_apex_timer.start()
 	print("enter jumping velocity: ", velocity.y)
 	anim.play("jump")
 
@@ -107,12 +113,9 @@ func jumping(delta: float):
 		print ("we are hanging")
 		return 
 
-	velocity.y += gravity * delta
-	print("jumping gravity: ", gravity, "jumping velocity: ", velocity.y)
-		
 	# NOTE : y is inverted in Godot
 	# NOTE : no check on is_on_floor here to prevent weird behavior : should start by going into falling state.
-	if velocity.y >= 0 :
+	if _time_till_apex_timer.is_stopped() :
 		if _is_apex_hanging:
 			_state_machine.change_state(FALLING_STATE)
 			_is_apex_hanging = false
@@ -121,13 +124,26 @@ func jumping(delta: float):
 			_is_apex_hanging = true
 			_apex_hanging_timer.start()
 			velocity.y = 0
+		return
 	
+	# we jump higher if we hold the jump button, otherwise we start falling
+	if Input.is_action_pressed("jump"):
+		velocity.y += (gravity *  delta / gravity_multiplier)
+		print("jumping gravity: ", gravity, "jumping velocity: ", velocity.y)
+	else:
+		_state_machine.change_state(FALLING_STATE)
+		
+func leave_jumping():
+	_jump_cancel_timer.start()
+	print("leave jumping velocity: ", velocity.y)	
+
 func falling(delta: float):
+	move_horizontally(delta)
 	if is_on_floor():
 		_state_machine.change_state(WALKING_STATE)
-	move_horizontally(delta)
+		return
 	#velocity.y = clamp(velocity.y + gravity * delta, -jump_height, max_fall_speed)
-	if Input.is_action_pressed("jump") : 
+	if Input.is_action_just_pressed("jump") && _jump_cancel_timer.is_stopped(): 
 		if !_coyote_timer.is_stopped():
 			_state_machine.change_state(JUMPING_STATE)
 			return
@@ -135,6 +151,8 @@ func falling(delta: float):
 			_buffered_jump_timer.start()
 	velocity.y += gravity * gravity_multiplier * delta
 
+func leave_falling():
+	print("leave falling velocity: ", velocity.y)
 
 func enter_dashing():
 	_is_dashing_timer.start()

@@ -330,3 +330,11 @@ one_shot = true
 [node name="ApexHangTimer" type="Timer" parent="Timers" unique_id=9386618]
 unique_name_in_owner = true
 one_shot = true
+
+[node name="JumpCancelTimer" type="Timer" parent="Timers" unique_id=1240986633]
+unique_name_in_owner = true
+one_shot = true
+
+[node name="TimeTillApexTimer" type="Timer" parent="Timers" unique_id=1321939402]
+unique_name_in_owner = true
+one_shot = true
