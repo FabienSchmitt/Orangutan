@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c2nbgmoyoswh"
-path="res://.godot/imported/triangle.png-af44663843e519421fe46da204cf001f.ctex"
+uid="uid://cb0qef7nyg2ks"
+path="res://.godot/imported/winter dead tree illustration_bw_blured.png-d63b0a5b60e6bcb36e0bd6bd8c640772.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/triangle.png"
-dest_files=["res://.godot/imported/triangle.png-af44663843e519421fe46da204cf001f.ctex"]
+source_file="res://images/Background/winter dead tree illustration_bw_blured.png"
+dest_files=["res://.godot/imported/winter dead tree illustration_bw_blured.png-d63b0a5b60e6bcb36e0bd6bd8c640772.ctex"]
 
 [params]
 

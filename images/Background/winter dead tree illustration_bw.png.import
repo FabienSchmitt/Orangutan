@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cffj8m8ttu5a1"
-path="res://.godot/imported/3.png-b54f98652d4c557e9022bb2e1f4f95cf.ctex"
+uid="uid://su54aiiqm4fg"
+path="res://.godot/imported/winter dead tree illustration_bw.png-dae828faf6a0a39375eecdcd872f80ac.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/Background/3.png"
-dest_files=["res://.godot/imported/3.png-b54f98652d4c557e9022bb2e1f4f95cf.ctex"]
+source_file="res://images/Background/winter dead tree illustration_bw.png"
+dest_files=["res://.godot/imported/winter dead tree illustration_bw.png-dae828faf6a0a39375eecdcd872f80ac.ctex"]
 
 [params]
 

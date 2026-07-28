@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="SS2D_Material_Shape" format=3 uid="uid://giof1cop48ux"]
+
+[ext_resource type="Script" uid="uid://0lhxan4cqrc1" path="res://addons/rmsmartshape/materials/edge_material_metadata.gd" id="1_g8uw3"]
+[ext_resource type="Script" uid="uid://nc5bfedvnpgm" path="res://addons/rmsmartshape/materials/shape_material.gd" id="2_24vhv"]
+
+[sub_resource type="Gradient" id="Gradient_8jha5"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.078431375, 0.078431375, 0.078431375, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_4ovnp"]
+gradient = SubResource("Gradient_8jha5")
+
+[resource]
+script = ExtResource("2_24vhv")
+fill_textures = Array[Texture2D]([SubResource("GradientTexture1D_4ovnp")])
+fill_texture_z_index = 0

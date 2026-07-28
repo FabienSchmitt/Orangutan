@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://8gmoojc78wqe"]
+
+[ext_resource type="Shader" uid="uid://bonhq2hag0xml" path="res://assets/shader/fog.gdshader" id="1_1dguu"]
+
+[resource]
+resource_local_to_scene = true
+shader = ExtResource("1_1dguu")
+shader_parameter/base_color = Color(2.5359848, 2.5359848, 2.5359848, 0.5058824)
+shader_parameter/location_fade = 1.0

@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://deuw6xyewwl5u"]
+
+[ext_resource type="Material" uid="uid://8gmoojc78wqe" path="res://assets/materials/fog_material.tres" id="1_yet4a"]
+[ext_resource type="Texture2D" uid="uid://dh603l108ucxf" path="res://assets/texture/fog_noise_texture.tres" id="2_ncabl"]
+
+[node name="Sprite2D" type="Sprite2D" unique_id=1844524651]
+texture_repeat = 2
+material = ExtResource("1_yet4a")
+texture = ExtResource("2_ncabl")
