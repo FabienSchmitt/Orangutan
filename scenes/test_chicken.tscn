@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cjluwqcuqupfm"]
 
-[ext_resource type="PackedScene" uid="uid://nvllvgk10xrl" path="res://scenes/hill.tscn" id="1_gp4lm"]
-[ext_resource type="PackedScene" uid="uid://qlet80yw0bvq" path="res://scenes/chicken_rigged.tscn" id="2_1ir5a"]
+[ext_resource type="PackedScene" uid="uid://nvllvgk10xrl" path="res://scenes/environment/hill.tscn" id="1_gp4lm"]
+[ext_resource type="PackedScene" uid="uid://qlet80yw0bvq" path="res://scenes/gameplay/chicken_rigged.tscn" id="2_1ir5a"]
 
 [node name="test chicken" type="Node2D" unique_id=1116271538]
 

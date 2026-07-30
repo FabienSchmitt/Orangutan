@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://wpgttved60v1"]
+
+[ext_resource type="Texture2D" uid="uid://det32rt8w5pfp" path="res://assets/images/platform1.png" id="1_xc0g7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4ovnp"]
+size = Vector2(62, 11)
+
+[node name="SimplePlatform" type="StaticBody2D" unique_id=985924724]
+
+[node name="Platform1" type="Sprite2D" parent="." unique_id=988506304]
+position = Vector2(0, -20)
+texture = ExtResource("1_xc0g7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=996753042]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_4ovnp")

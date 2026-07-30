@@ -26,10 +26,15 @@ boot_splash/show_image=false
 boot_splash/image="uid://b0lisltulglyj"
 config/icon="uid://b8gg7tvtwi70b"
 
+[audio]
+
+buses/default_bus_layout="res://resources/default_bus_layout.tres"
+
 [autoload]
 
-Globals="*res://scripts/globals.gd"
-GameManager="*res://scripts/game_manager.gd"
+AudioManager="*uid://chycr408tvo28"
+EventBus="*uid://d34le61fltr84"
+GameManager="*uid://d0x8q10y8a5f8"
 
 [display]
 
@@ -43,7 +48,7 @@ project/assembly_name="My2DGame1"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/auto_polygon2d_triangulation/plugin.cfg", "res://addons/gut/plugin.cfg", "res://addons/rmsmartshape/plugin.cfg")
+enabled=PackedStringArray("res://addons/rmsmartshape/plugin.cfg")
 
 [filesystem]
 

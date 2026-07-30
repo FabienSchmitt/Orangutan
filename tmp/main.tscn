@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dj1445otqsqc2"]
 
-[ext_resource type="PackedScene" uid="uid://27mftwfbfn3j" path="res://scenes/player.tscn" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://27mftwfbfn3j" path="res://scenes/gameplay/player.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://c8j2xr20otw57" path="res://tmp/parallax_background.tscn" id="2_0xm2m"]
 [ext_resource type="AudioStream" uid="uid://15pn3ejyd62j" path="res://assets/audio/cinematic-action-jungle-drums-loop-125bpm-345139.mp3" id="3_g7h0s"]
 
