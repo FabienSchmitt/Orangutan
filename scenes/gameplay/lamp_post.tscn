@@ -1,0 +1,121 @@
+[gd_scene format=3 uid="uid://bkyw15bvo5cb6"]
+
+[ext_resource type="Texture2D" uid="uid://cclucnd37c3l6" path="res://assets/images/gameplay/LampPost.png" id="1_6w47c"]
+[ext_resource type="Script" uid="uid://bclyjxyqsxi2x" path="res://scenes/gameplay/lamp_post.gd" id="1_48ak7"]
+[ext_resource type="Texture2D" uid="uid://mbd33ky7y1kk" path="res://assets/circles.png" id="3_33tn4"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_33tn4"]
+load_path = "res://.godot/imported/white_circle.png-556e527216ad0e72cae9b7a36759b709.ctex"
+
+[sub_resource type="Gradient" id="Gradient_ulplt"]
+offsets = PackedFloat32Array(0.31268436, 0.6696165)
+colors = PackedColorArray(0.9959269, 0.7689313, 0.43593723, 0.94509804, 0.99607843, 0.76862746, 0.43529412, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_4ovnp"]
+gradient = SubResource("Gradient_ulplt")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.8034188, 0.14529915)
+
+[sub_resource type="Gradient" id="Gradient_48ak7"]
+offsets = PackedFloat32Array(0.5545723, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_cq66v"]
+gradient = SubResource("Gradient_48ak7")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.85897434, 0.115384616)
+
+[sub_resource type="Animation" id="Animation_33tn4"]
+length = 0.001
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SelectionSprite:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_48ak7"]
+resource_name = "idle"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SelectionSprite:rotation")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.23333335, 0.5, 0.73333335, 1, 1.2333333, 1.5000001, 1.7333335, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.7853982, 1.5707964, 2.3561945, 3.1415927, 3.9269907, 4.712389, 5.497787, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ulplt"]
+_data = {
+&"RESET": SubResource("Animation_33tn4"),
+&"idle": SubResource("Animation_48ak7")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4ovnp"]
+radius = 138.70833
+
+[node name="LampPost" type="Node2D" unique_id=603499362 groups=["LampPost"]]
+script = ExtResource("1_48ak7")
+
+[node name="LightSprite" type="Sprite2D" parent="." unique_id=363747163]
+modulate = Color(1, 1, 1, 0.34509805)
+scale = Vector2(0.05, 0.05)
+texture = SubResource("CompressedTexture2D_33tn4")
+
+[node name="GlowSprite" type="Sprite2D" parent="." unique_id=745151180]
+unique_name_in_owner = true
+texture = SubResource("GradientTexture2D_4ovnp")
+
+[node name="Light2D" type="PointLight2D" parent="." unique_id=1170403949]
+unique_name_in_owner = true
+position = Vector2(-1.9073485e-06, 0)
+scale = Vector2(22.164108, 14.760001)
+color = Color(0.8627451, 0.5921569, 0.07058824, 0.94509804)
+energy = 16.0
+shadow_enabled = true
+shadow_color = Color(0, 0, 0, 1)
+texture = SubResource("GradientTexture2D_cq66v")
+texture_scale = 0.5
+
+[node name="StructureSprite" type="Sprite2D" parent="." unique_id=1032507423]
+modulate = Color(0.078431375, 0.078431375, 0.078431375, 1)
+light_mask = 0
+position = Vector2(-54, 16)
+texture = ExtResource("1_6w47c")
+
+[node name="SelectionSprite" type="Sprite2D" parent="." unique_id=1004985944]
+unique_name_in_owner = true
+visible = false
+scale = Vector2(0.04, 0.04)
+texture = ExtResource("3_33tn4")
+region_enabled = true
+region_rect = Rect2(2500, 2500, 2500, 2500)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=237532850]
+libraries/ = SubResource("AnimationLibrary_ulplt")
+autoplay = &"idle"
+
+[node name="InteractionArea" type="Area2D" parent="." unique_id=1154603687]
+visible = false
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea" unique_id=667485479]
+shape = SubResource("CircleShape2D_4ovnp")

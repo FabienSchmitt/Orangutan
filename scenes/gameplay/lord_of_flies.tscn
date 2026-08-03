@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://c6rk0cyo2ovq1"]
+
+[ext_resource type="Texture2D" uid="uid://det32rt8w5pfp" path="res://assets/images/platform1.png" id="1_tl5qh"]
+[ext_resource type="Texture2D" uid="uid://7qv6vbxpga2s" path="res://assets/images/big_drawn_circle.png" id="2_2sp8b"]
+[ext_resource type="PackedScene" uid="uid://chlpx5tud2slc" path="res://scenes/gameplay/boids/boids.tscn" id="3_2sp8b"]
+[ext_resource type="Script" uid="uid://utt486swhfg8" path="res://scripts/gameplay/boids/species.gd" id="4_20nuc"]
+[ext_resource type="PackedScene" uid="uid://cwaohc4y2hi5x" path="res://scenes/gameplay/boids/particule.tscn" id="5_m1mrh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4ovnp"]
+size = Vector2(179, 204)
+
+[sub_resource type="Resource" id="Resource_ldy4f"]
+script = ExtResource("4_20nuc")
+color = Color(0.74509805, 0.05882353, 0.078431375, 1)
+has_queen = true
+queen_weight = 5.0
+visibility_threshold = 800
+boids_size = 20
+starting_speed = 200
+metadata/_custom_type_script = "uid://utt486swhfg8"
+
+[node name="Node2D" type="CharacterBody2D" unique_id=1178282113]
+
+[node name="Platform1" type="Sprite2D" parent="." unique_id=416628786]
+position = Vector2(44.200005, 146.85)
+rotation = 1.5707964
+scale = Vector2(2, 2)
+texture = ExtResource("1_tl5qh")
+
+[node name="BigDrawnCircle" type="Sprite2D" parent="." unique_id=1913789503]
+position = Vector2(0.20000456, 5.849991)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_2sp8b")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=453150240]
+position = Vector2(2.5, 3)
+shape = SubResource("RectangleShape2D_4ovnp")
+
+[node name="Boids" parent="." unique_id=1057246153 node_paths=PackedStringArray("queen") groups=["EnemyBoids"] instance=ExtResource("3_2sp8b")]
+species = SubResource("Resource_ldy4f")
+queen = NodePath("..")
+particule_scene = ExtResource("5_m1mrh")

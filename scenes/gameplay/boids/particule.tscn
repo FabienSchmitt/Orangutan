@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://cwaohc4y2hi5x"]
+
+[ext_resource type="Script" uid="uid://sehkfe33es3k" path="res://scenes/gameplay/boids/particule.gd" id="1_0ei5p"]
+[ext_resource type="Texture2D" uid="uid://ccusdidfid2tl" path="res://assets/images/gameplay/triangle.png" id="2_cq66v"]
+
+[node name="Particule" type="Node2D" unique_id=1593296191]
+script = ExtResource("1_0ei5p")
+
+[node name="Triangle" type="Sprite2D" parent="." unique_id=1179289860]
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("2_cq66v")
