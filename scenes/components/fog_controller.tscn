@@ -3,16 +3,29 @@
 [ext_resource type="Script" uid="uid://dxuv3kaml2xf1" path="res://scripts/components/fog_controller.gd" id="1_cycod"]
 [ext_resource type="Shader" uid="uid://dnc6svgb5timp" path="res://scenes/components/fog_controller.gdshader" id="2_yi62x"]
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_uwr7h"]
+noise_type = 3
+seed = 8
+frequency = 0.0163
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_q3ygi"]
+noise = SubResource("FastNoiseLite_uwr7h")
+seamless = true
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ndod7"]
 shader = ExtResource("2_yi62x")
 shader_parameter/green_threshold = 0.25
-shader_parameter/yellow_count = 0
-shader_parameter/green_count = 0
-shader_parameter/player_global_position_uv = Vector2(0, 0)
 shader_parameter/transparency_threshold = 0.1
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_q3ygi")
+shader_parameter/noise_scale = 3.0
+shader_parameter/noise_strength = 0.12
+shader_parameter/noise_speed = 0.02
 shader_parameter/green = Vector4(0.317647, 0.788235, 0.356863, 0.392157)
 shader_parameter/red = Vector4(0.976471, 0.270588, 0.227451, 0.392157)
 shader_parameter/yellow = Vector4(1, 1, 0.443137, 0.392157)
+shader_parameter/green_count = 0
+shader_parameter/yellow_count = 0
+shader_parameter/player_global_position_uv = Vector2(0, 0)
 
 [node name="FogController" type="Node2D" unique_id=2069781425 node_paths=PackedStringArray("fog_color_rect")]
 script = ExtResource("1_cycod")
@@ -21,6 +34,7 @@ fog_color_rect = NodePath("CanvasLayer/ColorRect")
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1860888847]
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=2020904705]
+texture_repeat = 2
 material = SubResource("ShaderMaterial_ndod7")
 anchors_preset = 15
 anchor_right = 1.0
@@ -29,4 +43,4 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-color = Color(1, 1, 1, 0.039215688)
+color = Color(1, 1, 1, 0.003921569)
