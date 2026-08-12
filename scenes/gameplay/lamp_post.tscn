@@ -73,7 +73,7 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_4ovnp"]
 radius = 138.70833
 
-[node name="LampPost" type="Node2D" unique_id=603499362 groups=["LampPost", "YellowFog"]]
+[node name="LampPost" type="Node2D" unique_id=603499362 groups=["LampPost"]]
 script = ExtResource("1_48ak7")
 
 [node name="LightSprite" type="Sprite2D" parent="." unique_id=363747163]

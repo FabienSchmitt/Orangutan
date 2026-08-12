@@ -42,6 +42,8 @@ func light_up() -> void:
 	print ("Lamppost light up")
 	if is_lit:
 		return
+	# add to group before emittting event
+	self.add_to_group("YellowFog")
 	EventBus.lit_light.emit()
 	_pulse_duration = randf_range(min_pulse_rate, max_pulse_rate)
 	is_lit = true
@@ -56,11 +58,16 @@ func light_up() -> void:
 
 
 func light_down() -> void:
+	if is_lit == false:
+		return
+
+	EventBus.unlit_light.emit()
 	is_lit = false
 	glow_sprite.visible = false
 	light2d.visible = false
 	_light_energy = 0.0
 	glow_sprite.modulate.a = 0.0
+	self.remove_from_group("YellowFog")
 
 func pulse() -> void:
 	var t := Time.get_ticks_msec() / 1000.0
