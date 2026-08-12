@@ -39,10 +39,9 @@ func lit_selected_lamppost() -> void:
 	var boid = _boids[0]
 	boid.change_queen(_selected_lamppost)
 	if _lit_lamppost != null:
-		_lit_lamppost.is_lit = false
+		_lit_lamppost.light_down()
 	_lit_lamppost = _selected_lamppost
-	_selected_lamppost.is_lit = true
-	EventBus.lit_light.emit()
+	_selected_lamppost.light_up()
 
 func select_next_lamppost(direction : int) -> void:
 	if _selected_lamppost == null:

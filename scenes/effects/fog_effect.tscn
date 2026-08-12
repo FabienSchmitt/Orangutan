@@ -1,7 +1,22 @@
 [gd_scene format=3 uid="uid://8fpeo5wrc21e"]
 
-[ext_resource type="Material" uid="uid://8gmoojc78wqe" path="res://assets/materials/fog_material.tres" id="1_tfhrv"]
-[ext_resource type="Texture2D" uid="uid://dh603l108ucxf" path="res://assets/texture/fog_noise_texture.tres" id="2_tfhrv"]
+[ext_resource type="Shader" uid="uid://m3qi2oleb186" path="res://assets/shader/new_fog_shader.tres" id="1_1tkta"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1dguu"]
+shader = ExtResource("1_1tkta")
+
+[sub_resource type="Gradient" id="Gradient_i3ypg"]
+offsets = PackedFloat32Array(0.15044248, 0.79646015)
+colors = PackedColorArray(1, 0.9882353, 1, 0, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_dix4c"]
+frequency = 0.0062
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_a1ek7"]
+noise = SubResource("FastNoiseLite_dix4c")
+color_ramp = SubResource("Gradient_i3ypg")
+seamless = true
+seamless_blend_skirt = 0.5
 
 [node name="FogEffect" type="Control" unique_id=1377499407]
 layout_mode = 3
@@ -9,10 +24,10 @@ anchors_preset = 0
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1013203689]
 texture_repeat = 2
-material = ExtResource("1_tfhrv")
+material = SubResource("ShaderMaterial_1dguu")
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 512.0
+offset_bottom = 512.0
 scale = Vector2(3.8024747, 2.2143974)
-texture = ExtResource("2_tfhrv")
+texture = SubResource("NoiseTexture2D_a1ek7")
 stretch_mode = 5

@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://cp7p5yk0lr2vq"]
+
+[ext_resource type="Texture2D" uid="uid://d3kc77mvvu78m" path="res://assets/images/white_circle.png" id="1_fj0xw"]
+[ext_resource type="Script" uid="uid://dvlisu20kq17" path="res://scripts/gameplay/firefly.gd" id="1_tq0tj"]
+[ext_resource type="AudioStream" uid="uid://p6hxk1bt7edw" path="res://assets/audio/sound_effects/flies_buzzing.mp3" id="3_nbcoo"]
+[ext_resource type="AudioStream" uid="uid://c32u2wvbnmps8" path="res://assets/audio/sound_effects/firefly_die_ping.mp3" id="4_cy8l8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4ovnp"]
+radius = 5.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_72ij4"]
+radius = 15.0
+
+[node name="Firefly" type="Area2D" unique_id=1381949612 groups=["GreenFog", "Interactables"]]
+collision_layer = 2
+collision_mask = 12
+script = ExtResource("1_tq0tj")
+
+[node name="WhiteCircle" type="Sprite2D" parent="." unique_id=1729129383]
+modulate = Color(1.0986934, 1.0598718, 0, 0.8352941)
+scale = Vector2(0.01, 0.01)
+texture = ExtResource("1_fj0xw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=10985774]
+shape = SubResource("CircleShape2D_4ovnp")
+
+[node name="FlySoundPlayer" type="AudioStreamPlayer2D" parent="." unique_id=1440365771]
+unique_name_in_owner = true
+stream = ExtResource("3_nbcoo")
+max_distance = 1000.0
+attenuation = 0.27739263
+bus = &"Effects"
+
+[node name="DieSoundPlayer" type="AudioStreamPlayer" parent="." unique_id=1811954116]
+unique_name_in_owner = true
+stream = ExtResource("4_cy8l8")
+bus = &"Effects"
+
+[node name="InteractionArea" type="Area2D" parent="." unique_id=979225467]
+unique_name_in_owner = true
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea" unique_id=35460648]
+shape = SubResource("CircleShape2D_72ij4")

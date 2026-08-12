@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cwaohc4y2hi5x"]
 
-[ext_resource type="Script" uid="uid://sehkfe33es3k" path="res://scenes/gameplay/boids/particule.gd" id="1_0ei5p"]
+[ext_resource type="Script" uid="uid://sehkfe33es3k" path="res://scripts/gameplay/boids/particule.gd" id="1_0ei5p"]
 [ext_resource type="Texture2D" uid="uid://ccusdidfid2tl" path="res://assets/images/gameplay/triangle.png" id="2_cq66v"]
 
 [node name="Particule" type="Node2D" unique_id=1593296191]

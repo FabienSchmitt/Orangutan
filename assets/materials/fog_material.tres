@@ -5,5 +5,5 @@
 [resource]
 resource_local_to_scene = true
 shader = ExtResource("1_1dguu")
-shader_parameter/base_color = Color(2.5359848, 2.5359848, 2.5359848, 0.5058824)
+shader_parameter/base_color = Color(1, 1, 1, 1)
 shader_parameter/location_fade = 1.0

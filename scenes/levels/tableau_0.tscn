@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://dh603l108ucxf" path="res://assets/texture/fog_noise_texture.tres" id="3_fksi8"]
 [ext_resource type="Texture2D" uid="uid://7xa5c5k2kyx0" path="res://assets/images/Background/god_light_blurred.png" id="4_s2xrl"]
 [ext_resource type="Texture2D" uid="uid://su54aiiqm4fg" path="res://assets/images/Background/winter dead tree illustration_bw.png" id="5_61md3"]
+[ext_resource type="Shader" uid="uid://m3qi2oleb186" path="res://assets/shader/new_fog_shader.tres" id="5_ndod7"]
 [ext_resource type="PackedScene" uid="uid://27mftwfbfn3j" path="res://scenes/gameplay/player.tscn" id="6_ndod7"]
 [ext_resource type="Script" uid="uid://dhdc4b8yddyej" path="res://addons/rmsmartshape/shapes/shape.gd" id="7_iliy3"]
 [ext_resource type="Script" uid="uid://bwcf4pjgprn0k" path="res://addons/rmsmartshape/shapes/point.gd" id="8_yomq8"]
@@ -16,6 +17,20 @@
 [ext_resource type="PackedScene" uid="uid://chlpx5tud2slc" path="res://scenes/gameplay/boids/boids.tscn" id="15_fksi8"]
 [ext_resource type="Script" uid="uid://utt486swhfg8" path="res://scripts/gameplay/boids/species.gd" id="16_s2xrl"]
 [ext_resource type="PackedScene" uid="uid://cwaohc4y2hi5x" path="res://scenes/gameplay/boids/particule.tscn" id="17_61md3"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4ovnp"]
+shader = ExtResource("5_ndod7")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_61md3"]
+frequency = 0.0055
+fractal_weighted_strength = 0.02
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_61md3"]
+width = 1000
+height = 1000
+noise = SubResource("FastNoiseLite_61md3")
+seamless = true
+seamless_blend_skirt = 0.5
 
 [sub_resource type="Resource" id="Resource_aggq6"]
 script = ExtResource("8_yomq8")
@@ -126,9 +141,11 @@ queen_weight = 10.0
 boids_size = 10
 metadata/_custom_type_script = "uid://utt486swhfg8"
 
-[node name="Tableau0" type="Node2D" unique_id=737853730]
+[sub_resource type="Environment" id="Environment_4ovnp"]
+background_mode = 3
+glow_enabled = true
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1495013547]
+[node name="Tableau0" type="Node2D" unique_id=737853730]
 
 [node name="Parallax2D" type="Parallax2D" parent="." unique_id=1642766902]
 scroll_scale = Vector2(0.1, 1)
@@ -164,6 +181,17 @@ scale = Vector2(1, 3)
 texture = ExtResource("4_s2xrl")
 
 [node name="Parallax2D4" type="Parallax2D" parent="." unique_id=372767458]
+visible = false
+scroll_scale = Vector2(1.3, 1)
+repeat_size = Vector2(1000, 0)
+autoscroll = Vector2(-25, 0)
+repeat_times = 2
+
+[node name="second_fog" type="Sprite2D" parent="Parallax2D4" unique_id=1400794425]
+light_mask = 0
+material = SubResource("ShaderMaterial_4ovnp")
+position = Vector2(1539, -446)
+texture = SubResource("NoiseTexture2D_61md3")
 
 [node name="Parallax2D2" type="Parallax2D" parent="." unique_id=888207009]
 scroll_scale = Vector2(0.2, 1)
@@ -211,6 +239,7 @@ position = Vector2(1896, -205)
 scale = Vector2(3, 3)
 
 [node name="boids" parent="." unique_id=1057246153 node_paths=PackedStringArray("queen") groups=["Boids"] instance=ExtResource("15_fksi8")]
+visible = false
 position = Vector2(122, -255)
 species = SubResource("Resource_s2xrl")
 queen = NodePath("../LampPost")
@@ -220,5 +249,9 @@ particule_scene = ExtResource("17_61md3")
 position = Vector2(188, -178)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1195348569]
+visible = false
 position = Vector2(-138, 81)
 color = Color(0.09239707, 0.09239706, 0.09239706, 1)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=64875558]
+environment = SubResource("Environment_4ovnp")

@@ -2,11 +2,11 @@
 
 [sub_resource type="Gradient" id="Gradient_k30yp"]
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_72ij4"]
-frequency = 0.0065
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_1tkta"]
 
 [resource]
-noise = SubResource("FastNoiseLite_72ij4")
+generate_mipmaps = false
+noise = SubResource("FastNoiseLite_1tkta")
 color_ramp = SubResource("Gradient_k30yp")
 seamless = true
 normalize = false

@@ -1,15 +1,15 @@
 [gd_scene format=3 uid="uid://bkyw15bvo5cb6"]
 
 [ext_resource type="Texture2D" uid="uid://cclucnd37c3l6" path="res://assets/images/gameplay/LampPost.png" id="1_6w47c"]
-[ext_resource type="Script" uid="uid://bclyjxyqsxi2x" path="res://scenes/gameplay/lamp_post.gd" id="1_48ak7"]
+[ext_resource type="Script" uid="uid://bclyjxyqsxi2x" path="res://scripts/lamppost.gd" id="1_48ak7"]
 [ext_resource type="Texture2D" uid="uid://mbd33ky7y1kk" path="res://assets/circles.png" id="3_33tn4"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_33tn4"]
 load_path = "res://.godot/imported/white_circle.png-556e527216ad0e72cae9b7a36759b709.ctex"
 
 [sub_resource type="Gradient" id="Gradient_ulplt"]
-offsets = PackedFloat32Array(0.31268436, 0.6696165)
-colors = PackedColorArray(0.9959269, 0.7689313, 0.43593723, 0.94509804, 0.99607843, 0.76862746, 0.43529412, 0)
+offsets = PackedFloat32Array(0.25958702, 0.94100296)
+colors = PackedColorArray(1, 1, 1, 0.1254902, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_4ovnp"]
 gradient = SubResource("Gradient_ulplt")
@@ -19,15 +19,17 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.8034188, 0.14529915)
 
-[sub_resource type="Gradient" id="Gradient_48ak7"]
-offsets = PackedFloat32Array(0.5545723, 1)
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+[sub_resource type="Gradient" id="Gradient_33tn4"]
+offsets = PackedFloat32Array(0.25958702, 0.30973452, 0.94100296)
+colors = PackedColorArray(1, 1, 1, 0.94509804, 0.88235295, 0.6784314, 0.38039216, 0.94509804, 0.99607843, 0.76862746, 0.43529412, 0)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_cq66v"]
-gradient = SubResource("Gradient_48ak7")
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_48ak7"]
+gradient = SubResource("Gradient_33tn4")
+width = 256
+height = 256
 fill = 1
 fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(0.85897434, 0.115384616)
+fill_to = Vector2(0.8034188, 0.14529915)
 
 [sub_resource type="Animation" id="Animation_33tn4"]
 length = 0.001
@@ -71,7 +73,7 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_4ovnp"]
 radius = 138.70833
 
-[node name="LampPost" type="Node2D" unique_id=603499362 groups=["LampPost"]]
+[node name="LampPost" type="Node2D" unique_id=603499362 groups=["LampPost", "YellowFog"]]
 script = ExtResource("1_48ak7")
 
 [node name="LightSprite" type="Sprite2D" parent="." unique_id=363747163]
@@ -81,6 +83,8 @@ texture = SubResource("CompressedTexture2D_33tn4")
 
 [node name="GlowSprite" type="Sprite2D" parent="." unique_id=745151180]
 unique_name_in_owner = true
+visible = false
+modulate = Color(1, 1, 1, 0.9764706)
 texture = SubResource("GradientTexture2D_4ovnp")
 
 [node name="Light2D" type="PointLight2D" parent="." unique_id=1170403949]
@@ -88,10 +92,10 @@ unique_name_in_owner = true
 position = Vector2(-1.9073485e-06, 0)
 scale = Vector2(22.164108, 14.760001)
 color = Color(0.8627451, 0.5921569, 0.07058824, 0.94509804)
-energy = 16.0
+energy = 0.0
 shadow_enabled = true
 shadow_color = Color(0, 0, 0, 1)
-texture = SubResource("GradientTexture2D_cq66v")
+texture = SubResource("GradientTexture2D_48ak7")
 texture_scale = 0.5
 
 [node name="StructureSprite" type="Sprite2D" parent="." unique_id=1032507423]
@@ -113,7 +117,6 @@ libraries/ = SubResource("AnimationLibrary_ulplt")
 autoplay = &"idle"
 
 [node name="InteractionArea" type="Area2D" parent="." unique_id=1154603687]
-visible = false
 collision_layer = 8
 collision_mask = 0
 

@@ -1,0 +1,129 @@
+[gd_scene format=4 uid="uid://btyn4eahmjtl3"]
+
+[ext_resource type="Script" uid="uid://dhdc4b8yddyej" path="res://addons/rmsmartshape/shapes/shape.gd" id="1_g11oi"]
+[ext_resource type="Script" uid="uid://bwcf4pjgprn0k" path="res://addons/rmsmartshape/shapes/point.gd" id="2_7w2ev"]
+[ext_resource type="Script" uid="uid://bo5f7qe27jfje" path="res://addons/rmsmartshape/shapes/point_array.gd" id="3_nls64"]
+[ext_resource type="Script" uid="uid://llobjh5hvry" path="res://addons/rmsmartshape/shapes/mesh.gd" id="4_nb1c0"]
+[ext_resource type="Resource" uid="uid://giof1cop48ux" path="res://assets/materials/floor.tres" id="5_q3ygi"]
+[ext_resource type="PackedScene" uid="uid://27mftwfbfn3j" path="res://scenes/gameplay/player.tscn" id="6_nls64"]
+[ext_resource type="PackedScene" uid="uid://bkyw15bvo5cb6" path="res://scenes/gameplay/lamp_post.tscn" id="7_nb1c0"]
+[ext_resource type="PackedScene" uid="uid://cp7p5yk0lr2vq" path="res://scenes/gameplay/firefly.tscn" id="8_nb1c0"]
+[ext_resource type="PackedScene" uid="uid://dj0ug13tvgslj" path="res://scenes/components/fog_controller.tscn" id="9_q3ygi"]
+
+[sub_resource type="Resource" id="Resource_uwr7h"]
+script = ExtResource("2_7w2ev")
+position = Vector2(-10.787476, 313.0172)
+
+[sub_resource type="Resource" id="Resource_hm0hs"]
+script = ExtResource("2_7w2ev")
+position = Vector2(1920.773, 310.16406)
+
+[sub_resource type="Resource" id="Resource_8x10n"]
+script = ExtResource("2_7w2ev")
+position = Vector2(1915.0667, -174.86584)
+
+[sub_resource type="Resource" id="Resource_yof0t"]
+script = ExtResource("2_7w2ev")
+position = Vector2(1338.737, -80.71301)
+point_in = Vector2(-499.29565, -57.062378)
+point_out = Vector2(499.29565, 57.062378)
+
+[sub_resource type="Resource" id="Resource_y6joh"]
+script = ExtResource("2_7w2ev")
+position = Vector2(765.2605, -297.54993)
+point_in = Vector2(-262.48682, -51.35614)
+point_out = Vector2(262.48682, 51.35614)
+
+[sub_resource type="Resource" id="Resource_7vbxr"]
+script = ExtResource("2_7w2ev")
+position = Vector2(3.4780273, 4.880493)
+
+[sub_resource type="Resource" id="Resource_r8p7v"]
+script = ExtResource("2_7w2ev")
+position = Vector2(-10.787476, 313.0172)
+
+[sub_resource type="Resource" id="Resource_he8b1"]
+script = ExtResource("3_nls64")
+_points = {
+0: SubResource("Resource_uwr7h"),
+1: SubResource("Resource_hm0hs"),
+2: SubResource("Resource_8x10n"),
+3: SubResource("Resource_yof0t"),
+5: SubResource("Resource_y6joh"),
+11: SubResource("Resource_7vbxr"),
+12: SubResource("Resource_r8p7v")
+}
+_point_order = PackedInt32Array(12, 11, 5, 3, 2, 1, 0)
+_constraints = {
+Vector2i(0, 12): 15
+}
+_next_key = 13
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_uwr7h"]
+_surfaces = [{
+"aabb": AABB(-10.787476, -302.61673, 0, 1931.5604, 615.6339, 1e-05),
+"attribute_data": PackedByteArray("/////wCYXjwALZxAAJhePAAtnED/////5veOP+GXJcPm944/4Zclw/////+03wVABPuHw7TfBUAE+4fD/////5NKJEBcppXDk0okQFymlcP/////ulwyQPFOl8O6XDJA8U6Xw/////+sUD9AZMaUw6xQP0BkxpTD/////0cyU0AH6onDRzJTQAfqicP/////nDdaQOOtg8OcN1pA462Dw//////s2F9AFgd6w+zYX0AWB3rD/////wLZ7kDSeijDAtnuQNJ6KMP/////ImLvQKjdLsMiYu9AqN0uw/////+8GPBAABWbQ7wY8EAAFZtD/////1Dn7EBMIRjDUOfsQEwhGMP/////mwvpQJEHAsObC+lAkQcCw/////+CzHBAdUU/w4LMcEB1RT/D/////2jE4kA2yNTCaMTiQDbI1ML/////DMV7QE3bIMMMxXtATdsgw/////9FkNlAydqqwkWQ2UDJ2qrC/////+dshkDscQPD52yGQOxxA8P/////uu3MQNGzjsK67cxA0bOOwv////+WV6dAEG2hwpZXp0AQbaHC/////4CZLL00gpxDgJksvTSCnEM="),
+"format": 34359742527,
+"index_count": 63,
+"index_data": PackedByteArray("AAABAAIAAgADAAQABAAFAAYABgAHAAgACQAKAAsAAAACAAQABAAGAAgADAAJAAsAAAAEAAgADQAMAAsAAAAIAA4ADwANAAsAAAAOABAAEQAPAAsAAAAQABIAEwARAAsAAAASABQAFAATAAsAAAAUAAsACwAVABUAFQAAAAsA"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 22,
+"vertex_data": PackedByteArray("AJheQAAtnEAAAAAA5veOQ+GXJcMAAAAAtN8FRAT7h8MAAAAAk0okRFymlcMAAAAAulwyRPFOl8MAAAAArFA/RGTGlMMAAAAARzJTRAfqicMAAAAAnDdaROOtg8MAAAAA7NhfRBYHesMAAAAAAtnuRNJ6KMMAAAAAImLvRKjdLsMAAAAAvBjwRAAVm0MAAAAAUOfsREwhGMMAAAAAmwvpRJEHAsMAAAAAgsxwRHVFP8MAAAAAaMTiRDbI1MIAAAAADMV7RE3bIMMAAAAARZDZRMnaqsIAAAAA52yGROxxA8MAAAAAuu3MRNGzjsIAAAAAllenRBBtocIAAAAAgJkswTSCnEMAAAAA/////////7//////////v/////////+//////////7//////////v/////////+//////////7//////////v/////////+//////////7//////////v/////////+//////////7//////////v/////////+//////////7//////////v/////////+//////////7//////////v/////////+//////////78=")
+}]
+
+[sub_resource type="Gradient" id="Gradient_8jha5"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.078431375, 0.078431375, 0.078431375, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_4ovnp"]
+gradient = SubResource("Gradient_8jha5")
+
+[sub_resource type="Resource" id="Resource_o4h7h"]
+script = ExtResource("4_nb1c0")
+texture = SubResource("GradientTexture1D_4ovnp")
+mesh = SubResource("ArrayMesh_uwr7h")
+
+[sub_resource type="Curve2D" id="Curve2D_nls64"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 59, -96, 0, 0, 0, 0, 184, -196, 0, 0, 0, 0, 280, -235, 0, 0, 0, 0, 389, -270, 0, 0, 0, 0, 474, -309, 0, 0, 0, 0, 630, -350, 0, 0, 0, 0, 697, -362, 0, 0, 0, 0, 798, -360, 0, 0, 0, 0, 872, -352, 0, 0, 0, 0, 942, -315, 0, 0, 0, 0, 1003, -268, 0, 0, 0, 0, 1024, -243, 0, 0, 0, 0, 1036, -221, 0, 0, 0, 0, 1172, -184, 0, 0, 0, 0, 1238, -172, 0, 0, 0, 0, 1297, -159, 0, 0, 0, 0, 1377, -149, 0, 0, 0, 0, 1447, -145, 0, 0, 0, 0, 1480, -145, 0, 0, 0, 0, 1513, -145, 0, 0, 0, 0, 1574, -155, 0, 0, 0, 0, 1628, -176, 0, 0, 0, 0, 1677, -182, 0, 0, 0, 0, 1724, -192, 0, 0, 0, 0, 1747, -192)
+}
+point_count = 25
+
+[node name="FireflyTestScene" type="Node2D" unique_id=654906620]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1403823158]
+
+[node name="SS2D_Shape" type="Node2D" parent="StaticBody2D" unique_id=2069065249]
+script = ExtResource("1_g11oi")
+_points = SubResource("Resource_he8b1")
+_meshes = Array[ExtResource("4_nb1c0")]([SubResource("Resource_o4h7h")])
+shape_material = ExtResource("5_q3ygi")
+collision_polygon_node_path = NodePath("../CollisionPolygon2D")
+metadata/_custom_type_script = "uid://dhdc4b8yddyej"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=290847617]
+visible = false
+polygon = PackedVector2Array(-10.787476, 313.0172, 3.4780273, 4.880493, 285.9367, -165.59328, 535.49536, -271.96106, 657.1652, -299.29968, 713.44885, -302.61673, 765.2605, -297.54993, 844.7856, -275.82834, 872.8689, -263.3585, 895.3894, -250.02768, 963.19543, -191.27132, 1007.07886, -160.85664, 1075.4032, -131.445, 1338.737, -80.71301, 1639.429, -71.351204, 1740.5084, -85.427315, 1814.1377, -106.39104, 1864.3627, -130.02956, 1895.2285, -152.13007, 1910.7815, -168.47977, 1915.0667, -174.86584, 1920.773, 310.16406)
+
+[node name="Player" parent="." unique_id=411606404 instance=ExtResource("6_nls64")]
+position = Vector2(571, -330)
+collision_mask = 3
+
+[node name="LampPost" parent="." unique_id=603499362 instance=ExtResource("7_nb1c0")]
+position = Vector2(1760, -194)
+
+[node name="LampPost2" parent="." unique_id=541787277 instance=ExtResource("7_nb1c0")]
+position = Vector2(214, -175)
+
+[node name="Path2D" type="Path2D" parent="." unique_id=87091061]
+curve = SubResource("Curve2D_nls64")
+
+[node name="Firefly" parent="." unique_id=1381949612 node_paths=PackedStringArray("path") instance=ExtResource("8_nb1c0")]
+position = Vector2(59, -96)
+path = NodePath("../Path2D")
+
+[node name="FogController" parent="." unique_id=2069781425 instance=ExtResource("9_q3ygi")]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1136399516]
+position = Vector2(935, -303)

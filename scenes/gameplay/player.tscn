@@ -1,11 +1,10 @@
 [gd_scene format=3 uid="uid://27mftwfbfn3j"]
 
 [ext_resource type="Script" uid="uid://bimrmq72ktg18" path="res://scripts/gameplay/player.gd" id="1_dap4h"]
-[ext_resource type="Script" uid="uid://b6bt47rl75ben" path="res://scripts/gameplay/camera_effect.gd" id="2_03k2y"]
 [ext_resource type="Texture2D" uid="uid://vwn8nc2dac0g" path="res://assets/images/Orangutan.png" id="2_ki2oj"]
 [ext_resource type="PackedScene" uid="uid://dphhdua1klkok" path="res://scenes/components/hitbox_component.tscn" id="3_03k2y"]
 [ext_resource type="PackedScene" uid="uid://cj6hvv60ue53k" path="res://scenes/components/life_component.tscn" id="4_olumy"]
-[ext_resource type="Script" uid="uid://dvobjkoc4mwdf" path="res://scenes/gameplay/boids_controller.gd" id="5_ki2oj"]
+[ext_resource type="Script" uid="uid://ckjtsvxyik5bh" path="res://scripts/components/interact_component.gd" id="6_03k2y"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4flbx"]
 radius = 34.0
@@ -299,16 +298,14 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_4ovnp"]
 radius = 35.014282
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_72ij4"]
-radius = 248.16325
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4ovnp"]
+size = Vector2(147, 92)
 
-[node name="Player" type="CharacterBody2D" unique_id=411606404]
+[node name="Player" type="CharacterBody2D" unique_id=411606404 groups=["Player"]]
+collision_mask = 4
 floor_max_angle = 0.80285144
 floor_snap_length = 10.0
 script = ExtResource("1_dap4h")
-
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1053517855]
-script = ExtResource("2_03k2y")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1443167662]
 position = Vector2(-4, 10)
@@ -361,11 +358,10 @@ shape = SubResource("CircleShape2D_4ovnp")
 [node name="LifeComponent" parent="." unique_id=1029292215 instance=ExtResource("4_olumy")]
 unique_name_in_owner = true
 
-[node name="BoidsController" type="Area2D" parent="." unique_id=546937641 node_paths=PackedStringArray("player")]
-collision_layer = 0
-collision_mask = 8
-script = ExtResource("5_ki2oj")
-player = NodePath("..")
+[node name="InteractableComponent" type="Area2D" parent="." unique_id=690846321]
+collision_mask = 2
+script = ExtResource("6_03k2y")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BoidsController" unique_id=190948118]
-shape = SubResource("CircleShape2D_72ij4")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractableComponent" unique_id=66120182]
+position = Vector2(-2.5, 4)
+shape = SubResource("RectangleShape2D_4ovnp")

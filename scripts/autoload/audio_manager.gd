@@ -15,9 +15,9 @@ func _ready() -> void:
 	effects_player.process_mode = Node.PROCESS_MODE_ALWAYS
 
 	# Start playback and loop when finished
-	music_player.play()
-	music_player.finished.connect(func() -> void:
-		music_player.play())
+	# music_player.play()
+	# music_player.finished.connect(func() -> void:
+	# 	music_player.play())
 
 	
 	EventBus.lit_light.connect(play_effect.bind(preload("res://assets/audio/sound_effects/fire-whoosh.mp3"), 0.5))

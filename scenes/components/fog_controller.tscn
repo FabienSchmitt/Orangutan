@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://dj0ug13tvgslj"]
+
+[ext_resource type="Script" uid="uid://dxuv3kaml2xf1" path="res://scripts/components/fog_controller.gd" id="1_cycod"]
+[ext_resource type="Shader" uid="uid://c4yvf64kv6cya" path="res://scenes/levels/firefly_test_scene.tres" id="2_evrvu"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nb1c0"]
+resource_local_to_scene = true
+shader = ExtResource("2_evrvu")
+shader_parameter/GreenThreshold = 0.25
+shader_parameter/yellow_count = 0
+shader_parameter/green_count = 0
+shader_parameter/player_global_position_uv = Vector2(0.5, 0.5)
+
+[node name="FogController" type="Node2D" unique_id=2069781425 node_paths=PackedStringArray("fog_color_rect")]
+script = ExtResource("1_cycod")
+fog_color_rect = NodePath("CanvasLayer/ColorRect")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1860888847]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=2020904705]
+material = SubResource("ShaderMaterial_nb1c0")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(1, 1, 1, 0.039215688)
