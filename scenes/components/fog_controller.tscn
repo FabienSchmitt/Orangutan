@@ -15,6 +15,9 @@ seamless = true
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ndod7"]
 shader = ExtResource("2_yi62x")
 shader_parameter/green_threshold = 0.25
+shader_parameter/yellow_threshold = 0.25
+shader_parameter/player_threshold = 0.25
+shader_parameter/red_threshold = 0.25
 shader_parameter/transparency_threshold = 0.1
 shader_parameter/noise_texture = SubResource("NoiseTexture2D_q3ygi")
 shader_parameter/noise_scale = 3.0
