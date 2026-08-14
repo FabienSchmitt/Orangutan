@@ -3,7 +3,7 @@ extends Area2D
 var interactables: Array[Node] = []
 
 func _ready() -> void:
-	var interactables = get_tree().get_nodes_in_group("Interactables")
+	interactables = get_tree().get_nodes_in_group("Interactables")
 	
 	area_entered.connect(_on_area_entered)
 	area_exited.connect(_on_area_exited)

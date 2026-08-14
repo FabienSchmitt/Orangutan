@@ -62,6 +62,7 @@ Interactables=""
 Player=""
 GreenFog=""
 YellowFog=""
+MovingObjects=""
 
 [input]
 
@@ -122,6 +123,7 @@ select_previous={
 2d_physics/layer_2="interactables"
 2d_physics/layer_3="obstacles"
 2d_physics/layer_4="lamp_posts"
+2d_physics/layer_5="MovingObjects"
 
 [rendering]
 

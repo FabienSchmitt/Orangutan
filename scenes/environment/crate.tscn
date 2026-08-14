@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://byila07l7duw4"]
+
+[ext_resource type="Script" uid="uid://cuxdbhlwjv8y2" path="res://scripts/environment/crate.gd" id="1_ffjbs"]
+[ext_resource type="Texture2D" uid="uid://geiy5ogth6ec" path="res://icon.svg" id="1_iob3o"]
+[ext_resource type="Script" uid="uid://l51i4xd30n6c" path="res://scripts/core/interactable.gd" id="3_uyp0v"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4ovnp"]
+size = Vector2(128, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_72ij4"]
+size = Vector2(128, 128)
+
+[node name="Crate" type="RigidBody2D" unique_id=416244040 node_paths=PackedStringArray("interactable") groups=["Interactables", "MovingObjects"]]
+collision_layer = 16
+collision_mask = 5
+script = ExtResource("1_ffjbs")
+interactable = NodePath("Area2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=463969387]
+position = Vector2(0, -64)
+texture = ExtResource("1_iob3o")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=49315740]
+position = Vector2(0, -64)
+shape = SubResource("RectangleShape2D_4ovnp")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1420727674 groups=["Interactables"]]
+script = ExtResource("3_uyp0v")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=578950651]
+position = Vector2(0, -64)
+shape = SubResource("RectangleShape2D_72ij4")
