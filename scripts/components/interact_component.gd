@@ -9,7 +9,7 @@ func _ready() -> void:
 	area_exited.connect(_on_area_exited)
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	# we only interact with the first interactable in the list, if any
 	if Input.is_action_just_pressed("interact"):		
 		for interactable in interactables:

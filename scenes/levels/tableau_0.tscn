@@ -204,6 +204,7 @@ position = Vector2(1135, -919)
 texture = ExtResource("5_61md3")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=651676221]
+position = Vector2(-544, 0)
 collision_layer = 4
 
 [node name="SS2D_Shape" type="Node2D" parent="StaticBody2D" unique_id=291955261]
@@ -243,7 +244,7 @@ queen = NodePath("../LampPost")
 particule_scene = ExtResource("17_61md3")
 
 [node name="Player" parent="." unique_id=411606404 instance=ExtResource("6_ndod7")]
-position = Vector2(188, -178)
+position = Vector2(250, -324)
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=686268121]
 
@@ -261,8 +262,8 @@ collision_layer = 4
 
 [node name="LevelBounds" type="Node2D" parent="." unique_id=32776774]
 z_index = 256
-position = Vector2(-32, -714)
+position = Vector2(-542, -735)
 script = ExtResource("19_iliy3")
 height = 648
-width = 1152
+width = 3200
 metadata/_custom_type_script = "uid://gfvfvdtyrkmv"

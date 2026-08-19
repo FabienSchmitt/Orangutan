@@ -5,6 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://dphhdua1klkok" path="res://scenes/components/hitbox_component.tscn" id="3_03k2y"]
 [ext_resource type="PackedScene" uid="uid://cj6hvv60ue53k" path="res://scenes/components/life_component.tscn" id="4_olumy"]
 [ext_resource type="Script" uid="uid://ckjtsvxyik5bh" path="res://scripts/components/interact_component.gd" id="6_03k2y"]
+[ext_resource type="Script" uid="uid://d10kms4ka8uep" path="res://scripts/components/movement_controller.gd" id="7_olumy"]
+[ext_resource type="Script" uid="uid://b4otopad1spmm" path="res://scripts/components/velocity_component.gd" id="7_xxk27"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4flbx"]
 radius = 34.0
@@ -307,6 +309,10 @@ floor_max_angle = 0.80285144
 floor_snap_length = 10.0
 script = ExtResource("1_dap4h")
 
+[node name="VelocityComponent" type="Node2D" parent="." unique_id=1533402547]
+unique_name_in_owner = true
+script = ExtResource("7_xxk27")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1443167662]
 position = Vector2(-4, 10)
 shape = SubResource("CapsuleShape2D_4flbx")
@@ -365,3 +371,7 @@ script = ExtResource("6_03k2y")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractableComponent" unique_id=66120182]
 position = Vector2(-2.5, 4)
 shape = SubResource("RectangleShape2D_4ovnp")
+
+[node name="MovementController" type="Node2D" parent="." unique_id=858618468]
+unique_name_in_owner = true
+script = ExtResource("7_olumy")

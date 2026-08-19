@@ -28,7 +28,7 @@ func ready() -> void:
 	offset = randf_range(5.0, max_glow_offset) / 100.0	
 	_pulse_duration = randf_range(min_pulse_rate, max_pulse_rate)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if selected:
 		selection_sprite.visible = true
 	else:
