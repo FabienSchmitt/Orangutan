@@ -1,7 +1,8 @@
 class_name Interactable
 extends Area2D
 
-signal interacted
+signal interacted(interactor: Node2D)
 
-func interact() -> void:
-	interacted.emit()
+# interactor will mostly only be the player.
+func interact(interactor: Node2D) -> void:
+	interacted.emit(interactor)

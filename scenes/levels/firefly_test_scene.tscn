@@ -110,6 +110,9 @@ polygon = PackedVector2Array(-10.787476, 313.0172, 3.4780273, 4.880493, 285.9367
 position = Vector2(571, -330)
 collision_mask = 3
 
+[node name="Camera2D" type="Camera2D" parent="Player" unique_id=1136399516]
+position = Vector2(364, 27)
+
 [node name="LampPost" parent="." unique_id=603499362 instance=ExtResource("7_nb1c0")]
 position = Vector2(1760, -194)
 
@@ -124,6 +127,3 @@ position = Vector2(59, -96)
 path = NodePath("../Path2D")
 
 [node name="FogController" parent="." unique_id=2069781425 instance=ExtResource("9_q3ygi")]
-
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1136399516]
-position = Vector2(935, -303)

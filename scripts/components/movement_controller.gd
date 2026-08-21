@@ -1,6 +1,5 @@
 class_name MovementController extends Node2D
 
-
 func get_movement() -> float: 
 	return  Input.get_action_strength("right") - Input.get_action_strength("left")
 

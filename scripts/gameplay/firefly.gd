@@ -49,7 +49,7 @@ func reset() -> void:
 	fly_audio_player.stop()
 	die_audio_player.play()
 
-func interact() -> void:
+func interact(_interactor) -> void:
 	active = true
 	fly_audio_player.play()
 

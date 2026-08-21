@@ -1,6 +1,13 @@
 class_name Player
 extends CharacterBody2D
 
+const IDLE_STATE := "idle"
+const WALKING_STATE := "walking"
+const DASHING_STATE := "dashing"
+const JUMPING_STATE := "jumping"
+const FALLING_STATE := "falling" 
+const GRABBING_STATE := "grabbing"
+
 @export_category("Jump")
 @export var jump_height: float = 180
 @export var time_till_jump_apex : float = 0.55
@@ -16,8 +23,6 @@ extends CharacterBody2D
 @export var dash_time: float = 0.1
 @export var dash_cooldown: float = 0.5
 
-var _is_facing_right := true
-var _is_apex_hanging := false
 # From the formula: v = 2h/t  -- g = -2h / t^2
 # NOTE : inversed y axis already implemented
 var gravity : float:
@@ -39,20 +44,14 @@ var initial_jump_velocity: float:
 @onready var _apex_hanging_timer: Timer = %ApexHangTimer
 @onready var anim: AnimatedSprite2D = %AnimatedSprite2D
 
-
-const IDLE_STATE := "idle"
-const WALKING_STATE := "walking"
-const DASHING_STATE := "dashing"
-const JUMPING_STATE := "jumping"
-const FALLING_STATE := "falling"
-
+var _is_facing_right := true
+var _is_apex_hanging := false
 var _state_machine: CallableStateMachine
 
 func _ready():
 	setup_timers()
 	velocity_component.configure(self)
 	create_state_machine()
-
 
 func setup_timers():
 	_coyote_timer.wait_time = jump_coyote_time
@@ -65,10 +64,11 @@ func setup_timers():
 
 func create_state_machine():
 	_state_machine = CallableStateMachine.new()
-	_state_machine.add_state(WALKING_STATE, walking, enter_walking, Callable())
+	_state_machine.add_state(WALKING_STATE, walking, Callable(), Callable())
 	_state_machine.add_state(DASHING_STATE, dashing, enter_dashing, leave_dashing)
 	_state_machine.add_state(JUMPING_STATE, jumping, enter_jumping, Callable())
 	_state_machine.add_state(FALLING_STATE, falling, enter_falling, leave_falling)
+	_state_machine.add_state(GRABBING_STATE, grabbing, Callable(), leave_grabbing)
 	_state_machine.set_initial_state(WALKING_STATE)
 
 
@@ -78,12 +78,7 @@ func _physics_process(delta):
 	velocity_component.clamp_down_velocity(initial_jump_velocity)
 	move_and_slide()    
 
-func enter_walking():
-	#anim.play("walk")
-	pass
-
 func walking(delta: float):
-
 	if !is_on_floor(): # started falling
 		_coyote_timer.start()
 		_state_machine.change_state(FALLING_STATE)
@@ -106,6 +101,26 @@ func walking(delta: float):
 
 	move_horizontally(delta)
 
+func _change_to_grabbing_state():
+	_state_machine.change_state(GRABBING_STATE)
+
+func grabbing(delta: float):
+	# cannot jump, but can fall. If falling, needs to notify the end of grab.  
+	if !is_on_floor(): # started falling
+		_coyote_timer.start()
+		_state_machine.change_state(FALLING_STATE)
+		return 
+
+	var has_horizontal_speed = velocity_component.has_horizontal_speed()
+	if has_horizontal_speed && anim.animation != "walk":
+		anim.play("walk")
+	elif !has_horizontal_speed && anim.animation != "idle":
+		anim.play("idle")
+
+	move_horizontally(delta, true)
+
+func leave_grabbing():
+	EventBus.force_release.emit()
 
 func enter_jumping():
 	velocity_component.start_jumping(initial_jump_velocity)
@@ -183,7 +198,7 @@ func leave_dashing():
 	velocity_component.apply_initial_dashing_velocity()
 	_dash_cooldown_timer.start()
 
-func move_horizontally(delta: float) -> void:
+func move_horizontally(delta: float, is_slowed: bool = false) -> void:
 	# First check for dash
 	if movement_controller.dash() && _dash_cooldown_timer.is_stopped():
 		_state_machine.change_state(DASHING_STATE)
@@ -192,7 +207,7 @@ func move_horizontally(delta: float) -> void:
 	if abs(movement_direction) > 0.001:
 		turn_check(movement_direction)
 
-	velocity_component.apply_horizontal_velocity(delta, movement_direction)
+	velocity_component.apply_horizontal_velocity(delta, movement_direction, is_slowed)
 
 
 func turn_check(x_movment: float):
@@ -204,3 +219,7 @@ func turn_check(x_movment: float):
 func turn(turn_right: bool):
 	_is_facing_right = turn_right
 	anim.flip_h = !_is_facing_right
+
+
+func can_grab():
+	return _state_machine.current_state == WALKING_STATE

@@ -32,7 +32,7 @@ func get_deceleration() -> float:
 func has_horizontal_speed() -> bool: 
 	return  target_body.velocity.length() > 0.1
 
-func apply_horizontal_velocity(delta: float, input_axis: float) -> void:
+func apply_horizontal_velocity(delta: float, input_axis: float, is_slowed: bool = false) -> void:
 	if target_body == null:
 		return
 
@@ -41,6 +41,8 @@ func apply_horizontal_velocity(delta: float, input_axis: float) -> void:
 		return
 
 	var target_velocity: float = input_axis * max_speed
+	if is_slowed: 
+		target_velocity /= 2.0
 	target_body.velocity.x = move_toward(target_body.velocity.x, target_velocity, get_acceleration() * delta)
 
 func start_jumping(initial_jump_velocity : float):
